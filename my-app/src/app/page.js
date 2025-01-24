@@ -59,7 +59,7 @@ export default function Home() {
 
       {/* About Section */}
       <section
-        className="flex flex-col lg:flex-row justify-between items-center py-20 space-y-10 lg:space-y-0 lg:space-x-10 bg-gradient-to-r from-blue-50 to-purple-50"
+        className="flex flex-col lg:flex-row justify-between items-center py-20 space-y-10 lg:space-y-0 lg:space-x-10 "
         id="about"
       >
         <figure className="w-full lg:w-[40%] relative">

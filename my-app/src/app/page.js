@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
-
+import ProjectCard from "@/components/ProjectCard";
 // Helper function to construct the URL for assets
 const url = (name, wrap = false) =>
   `${wrap ? "url(" : ""}/images/${name}.svg${wrap ? ")" : ""}`;
@@ -20,6 +20,55 @@ export default function Home() {
     }
   };
 
+  // Reusable Section Title Component
+  const SectionTitle = ({ title }) => (
+    <h2
+      style={{
+        fontSize: "3rem",
+        marginBottom: "2rem",
+        fontWeight: "bold",
+        textAlign: "center",
+        color: "#556B2F",
+      }}
+    >
+      {title}
+    </h2>
+  );
+  // Project data
+  const projects = [
+    {
+      id: 1,
+      title: "Project 1",
+      description: "A modern web application built with React and Next.js.",
+      image: "/images/project1.png", // Path to image in the public folder
+      link: "#",
+      techStack: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+    },
+    {
+      id: 2,
+      title: "Project 2",
+      description: "An e-commerce platform with a responsive design.",
+      image: "/images/project1.png", // Path to image in the public folder
+      link: "#",
+      techStack: ["React", "Node.js", "Express", "MongoDB"],
+    },
+    {
+      id: 3,
+      title: "Project 2",
+      description: "An e-commerce platform with a responsive design.",
+      image: "/images/project1.png", // Path to image in the public folder
+      link: "#",
+      techStack: ["React", "Node.js", "Express", "MongoDB"],
+    },
+    {
+      id: 4,
+      title: "Project 2",
+      description: "An e-commerce platform with a responsive design.",
+      image: "/images/project1.png", // Path to image in the public folder
+      link: "#",
+      techStack: ["React", "Node.js", "Express", "MongoDB"],
+    },
+  ];
   return (
     <div
       style={{
@@ -523,81 +572,61 @@ export default function Home() {
         <ParallaxLayer
           offset={3}
           speed={0.4}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "#8FBC8F", // Forest green background
-            color: "#FFFFFF", // White text
-            padding: "0 10%",
-            zIndex: 1, // Ensure content is above the mountain
-          }}
+          className="flex items-center justify-center bg-[#8FBC8F] text-white p-8 md:p-10 lg:p-12 z-10"
         >
-          <div>
-            <h2
-              style={{
-                fontSize: "3rem",
-                marginBottom: "1rem",
-                fontWeight: "bold",
-              }}
-            >
+          <div className="w-full max-w-[1200px]">
+            <h2 className="text-[clamp(2rem,6vw,3rem)] font-bold mb-4 text-center">
               Experience
             </h2>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "1.5rem",
-              }}
-            >
-              <div
-                style={{
-                  background: "#FFFFFF",
-                  padding: "1rem",
-                  borderRadius: "10px",
-                  boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-                }}
-              >
-                <h3
-                  style={{
-                    color: "#556B2F",
-                    fontSize: "1.5rem",
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  Frontend Developer
+            <div className="flex flex-col gap-6 px-4">
+              {/* Experience Card 1 */}
+              <div className="bg-white p-4 rounded-lg shadow-md">
+                <h3 className="text-[#556B2F] text-[clamp(1.25rem,5vw,1.5rem)] mb-2">
+                  Fullstack Developer - Shopshere
                 </h3>
-                <p style={{ color: "#556B2F", fontSize: "1rem" }}>
-                  XYZ Company | 2021 - Present
-                </p>
-                <p style={{ color: "#556B2F", fontSize: "1rem" }}>
-                  Developed responsive and interactive web applications using
-                  React and Next.js.
+                <p className="text-[#556B2F] text-[clamp(0.9rem,4vw,1rem)] leading-relaxed">
+                  Designed and developed a responsive e-commerce web application
+                  using React (TypeScript), Express.js, and MySQL. Implemented
+                  user authentication, product browsing, and a seamless shopping
+                  cart experience.
                 </p>
               </div>
-              <div
-                style={{
-                  background: "#FFFFFF",
-                  padding: "1rem",
-                  borderRadius: "10px",
-                  boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-                }}
-              >
-                <h3
-                  style={{
-                    color: "#556B2F",
-                    fontSize: "1.5rem",
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  UI/UX Designer
+
+              {/* Experience Card 2 */}
+              <div className="bg-white p-4 rounded-lg shadow-md">
+                <h3 className="text-[#556B2F] text-[clamp(1.25rem,5vw,1.5rem)] mb-2">
+                  Frontend Developer - Personal Portfolio
                 </h3>
-                <p style={{ color: "#556B2F", fontSize: "1rem" }}>
-                  ABC Agency | 2019 - 2021
+                <p className="text-[#556B2F] text-[clamp(0.9rem,4vw,1rem)] leading-relaxed">
+                  Built a modern, responsive portfolio website using Next.js to
+                  showcase projects and skills, demonstrating expertise in
+                  React-based frameworks and web development best practices.
                 </p>
-                <p style={{ color: "#556B2F", fontSize: "1rem" }}>
-                  Designed user-friendly interfaces and collaborated with
-                  developers to implement designs.
+              </div>
+
+              {/* Experience Card 3 */}
+              <div className="bg-white p-4 rounded-lg shadow-md">
+                <h3 className="text-[#556B2F] text-[clamp(1.25rem,5vw,1.5rem)] mb-2">
+                  Frontend Developer - MedSched
+                </h3>
+                <p className="text-[#556B2F] text-[clamp(0.9rem,4vw,1rem)] leading-relaxed">
+                  Developed a landing page for a doctor appointment web app
+                  using React and Tailwind CSS, focusing on a modern, responsive
+                  design to enhance user experience and streamline appointment
+                  scheduling.
+                </p>
+              </div>
+
+              {/* Experience Card 4 */}
+              <div className="bg-white p-4 rounded-lg shadow-md">
+                <h3 className="text-[#556B2F] text-[clamp(1.25rem,5vw,1.5rem)] mb-2">
+                  Frontend Developer - Brainwave.io
+                </h3>
+                <p className="text-[#556B2F] text-[clamp(0.9rem,4vw,1rem)] leading-relaxed">
+                  Created a dynamic, user-friendly landing page for a
+                  consultancy firm using React and Tailwind CSS, emphasizing a
+                  seamless and responsive design to highlight the company's
+                  services and expertise.
                 </p>
               </div>
             </div>
@@ -605,54 +634,104 @@ export default function Home() {
         </ParallaxLayer>
 
         {/* Section 5: Projects */}
+        {/* Section 5: Projects */}
         <ParallaxLayer
           offset={4}
           speed={0.5}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "#F5F5DC", // Beige background
-            color: "#556B2F", // Forest green text
-            padding: "0 10%",
-            zIndex: 1, // Ensure content is above the mountain
-          }}
+          className="flex items-center justify-center bg-gradient-to-r from-[#F5F5DC] via-[#E6E6CB] to-[#F5F5DC] bg-[length:200%_200%] animate-gradientShift text-[#556B2F] p-8 md:p-10 lg:p-12 z-0"
         >
-          <div>
-            <h2
-              style={{
-                fontSize: "3rem",
-                marginBottom: "1rem",
-                fontWeight: "bold",
-              }}
-            >
+          <div className="w-full max-w-[1200px]">
+            <h2 className="text-[clamp(2rem,6vw,3rem)] font-bold mb-8 text-center">
               Projects
             </h2>
-            <div style={{ display: "flex", gap: "2rem" }}>
-              <div style={{ textAlign: "center" }}>
-                <img
-                  src={url("project1")}
-                  style={{ width: "100px" }}
-                  alt="Project 1"
-                />
-                <p>Project 1</p>
-              </div>
-              <div style={{ textAlign: "center" }}>
-                <img
-                  src={url("project2")}
-                  style={{ width: "100px" }}
-                  alt="Project 2"
-                />
-                <p>Project 2</p>
-              </div>
-              <div style={{ textAlign: "center" }}>
-                <img
-                  src={url("project3")}
-                  style={{ width: "100px" }}
-                  alt="Project 3"
-                />
-                <p>Project 3</p>
-              </div>
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-8 justify-center px-4">
+              {projects.map((project) => (
+                <div
+                  key={project.id}
+                  className="relative w-full h-[300px] rounded-lg overflow-hidden shadow-lg cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105"
+                  onMouseEnter={(e) => {
+                    e.currentTarget
+                      .querySelector(".hover-overlay")
+                      .classList.remove("opacity-0");
+                    e.currentTarget
+                      .querySelector(".hover-overlay")
+                      .classList.add("opacity-100");
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget
+                      .querySelector(".hover-overlay")
+                      .classList.remove("opacity-100");
+                    e.currentTarget
+                      .querySelector(".hover-overlay")
+                      .classList.add("opacity-0");
+                  }}
+                >
+                  {/* Project Image */}
+                  <img
+                    src={project.image}
+                    alt={project.name}
+                    className="w-full h-full object-cover transition-transform duration-300 ease-in-out"
+                  />
+
+                  {/* Hover Overlay */}
+                  <div className="hover-overlay absolute top-0 left-0 w-full h-full bg-[rgba(85,107,47,0.9)] text-white flex flex-col items-center justify-center opacity-0 transition-opacity duration-300 ease-in-out p-6 text-center">
+                    {/* Project Name */}
+                    <h3 className="text-2xl font-bold mb-3">{project.name}</h3>
+
+                    {/* Project Description */}
+                    <p className="text-sm mb-4">{project.description}</p>
+
+                    {/* Tech Stack */}
+                    <p className="text-sm mb-4">
+                      <strong>Tech Stack:</strong> {project.techStack}
+                    </p>
+
+                    {/* View Repository Button */}
+                    <a
+                      href={project.repositoryUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-6 py-2 bg-white text-[#556B2F] rounded-lg font-bold no-underline transition-colors duration-300 ease-in-out hover:bg-[#F5F5DC] flex items-center gap-2"
+                    >
+                      <span>View Repository</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* View More Projects Button */}
+            <div className="flex justify-center mt-10">
+              <a
+                href="/projects" // Replace with your actual link
+                className="px-8 py-3 bg-[#556B2F] text-white rounded-lg font-bold no-underline transition-colors duration-300 ease-in-out hover:bg-[#3D4D2B] flex items-center gap-2"
+              >
+                <span>View More Projects</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </a>
             </div>
           </div>
         </ParallaxLayer>
@@ -661,145 +740,89 @@ export default function Home() {
         <ParallaxLayer
           offset={5}
           speed={0.6}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "#8FBC8F", // Forest green background
-            color: "#FFFFFF", // White text
-            padding: "0 10%",
-            zIndex: 1, // Ensure content is above the mountain
-          }}
+          className="flex items-center justify-center bg-[#8FBC8F] text-white p-8 md:p-10 lg:p-12 z-0 relative overflow-hidden"
         >
-          <div>
-            <h2
-              style={{
-                fontSize: "3rem",
-                marginBottom: "1rem",
-                fontWeight: "bold",
-              }}
-            >
+          {/* Decorative Circles */}
+          <div className="absolute top-[-50px] left-[-50px] w-[200px] h-[200px] rounded-full bg-[rgba(255,255,255,0.1)] z-[-1]" />
+          <div className="absolute bottom-[-100px] right-[-100px] w-[300px] h-[300px] rounded-full bg-[rgba(255,255,255,0.1)] z-[-1]" />
+
+          {/* Content */}
+          <div className="relative z-10">
+            <h2 className="text-[clamp(2rem,6vw,3rem)] font-bold mb-4 text-center">
               Contact Me
             </h2>
-            <p style={{ fontSize: "1.2rem", marginBottom: "2rem" }}>
+            <p className="text-[clamp(1rem,4vw,1.2rem)] mb-8 text-center">
               Let's connect! Feel free to reach out for collaborations or just a
               friendly chat.
             </p>
-            <form
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "1rem",
-                maxWidth: "400px",
-              }}
-            >
-              <input
-                type="text"
-                placeholder="Your Name"
-                style={{
-                  padding: "0.5rem",
-                  fontSize: "1rem",
-                  borderRadius: "5px",
-                  border: "1px solid #556B2F",
-                }}
-              />
-              <input
-                type="email"
-                placeholder="Your Email"
-                style={{
-                  padding: "0.5rem",
-                  fontSize: "1rem",
-                  borderRadius: "5px",
-                  border: "1px solid #556B2F",
-                }}
-              />
-              <textarea
-                placeholder="Your Message"
-                rows="4"
-                style={{
-                  padding: "0.5rem",
-                  fontSize: "1rem",
-                  borderRadius: "5px",
-                  border: "1px solid #556B2F",
-                }}
-              />
+            <form className="flex flex-col gap-4 max-w-[400px] w-full">
+              {/* Input Fields with Icons */}
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  className="pl-10 pr-3 py-2 text-[#556B2F] text-base rounded-lg border border-[#556B2F] w-full"
+                />
+                <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-[#556B2F] text-xl">
+                  👤
+                </span>
+              </div>
+              <div className="relative">
+                <input
+                  type="email"
+                  placeholder="Your Email"
+                  className="pl-10 pr-3 py-2 text-[#556B2F] text-base rounded-lg border border-[#556B2F] w-full"
+                />
+                <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-[#556B2F] text-xl">
+                  ✉️
+                </span>
+              </div>
+              <div className="relative">
+                <textarea
+                  placeholder="Your Message"
+                  rows="4"
+                  className="pl-10 pr-3 py-2 text-[#556B2F] text-base rounded-lg border border-[#556B2F] w-full"
+                />
+                <span className="absolute left-2 top-2 text-[#556B2F] text-xl">
+                  📝
+                </span>
+              </div>
               <button
                 type="submit"
-                style={{
-                  padding: "0.5rem 1rem",
-                  fontSize: "1rem",
-                  borderRadius: "5px",
-                  border: "none",
-                  backgroundColor: "#556B2F", // Forest green
-                  color: "#FFFFFF", // White text
-                  cursor: "pointer",
-                }}
+                className="px-4 py-2 text-base rounded-lg bg-[#556B2F] text-white cursor-pointer transition-colors duration-300 ease-in-out hover:bg-[#6B8E23]"
               >
                 Send Message
               </button>
             </form>
           </div>
         </ParallaxLayer>
-
         {/* Floating Leaves */}
-        <ParallaxLayer
-          offset={0.5}
-          speed={0.5}
-          style={{ opacity: 0.2, zIndex: 0 }}
-        >
+        <ParallaxLayer offset={0.5} speed={0.5} className="opacity-20 z-0">
           {/* Top Right Leaf */}
           <img
             src={url("leaf")} // Points to /images/leaf.svg
-            style={{
-              position: "absolute",
-              top: "10%",
-              right: "10%",
-              width: "8%",
-              transform: "rotate(20deg)", // Add a slight rotation for a natural look
-            }}
+            className="absolute top-[10%] right-[10%] w-[8%] transform rotate-[20deg]"
             alt="leaf"
           />
           {/* Top Left Leaf */}
           <img
             src={url("leaf")} // Points to /images/leaf.svg
-            style={{
-              position: "absolute",
-              top: "15%",
-              left: "10%",
-              width: "8%",
-              transform: "rotate(-15deg)", // Add a slight rotation for a natural look
-            }}
+            className="absolute top-[15%] left-[10%] w-[8%] transform -rotate-[15deg]"
             alt="leaf"
           />
         </ParallaxLayer>
 
-        <ParallaxLayer
-          offset={1.5}
-          speed={0.3}
-          style={{ opacity: 0.3, zIndex: 0 }}
-        >
+        <ParallaxLayer offset={1.5} speed={0.3} className="opacity-30 z-0">
           {/* Bottom Right Leaf */}
           <img
             src={url("leaf")} // Points to /images/leaf.svg
-            style={{
-              position: "absolute",
-              bottom: "10%",
-              right: "15%",
-              width: "8%",
-              transform: "rotate(-10deg)", // Add a slight rotation for a natural look
-            }}
+            className="absolute bottom-[10%] right-[15%] w-[8%] transform -rotate-[10deg]"
             alt="leaf"
           />
           {/* Bottom Left Leaf */}
           <img
             src={url("leaf")} // Points to /images/leaf.svg
-            style={{
-              position: "absolute",
-              bottom: "15%",
-              left: "15%",
-              width: "8%",
-              transform: "rotate(15deg)", // Add a slight rotation for a natural look
-            }}
+            className="absolute bottom-[15%] left-[15%] w-[8%] transform rotate-[15deg]"
             alt="leaf"
           />
         </ParallaxLayer>
@@ -808,18 +831,11 @@ export default function Home() {
         <ParallaxLayer
           offset={2.5}
           speed={-0.1} // Slower speed for subtle movement
-          style={{
-            display: "flex",
-            alignItems: "flex-end",
-            justifyContent: "center",
-            pointerEvents: "none",
-            opacity: 0.3, // Reduced opacity for subtlety
-            zIndex: 1, // Ensure earth is below content
-          }}
+          className="flex items-end justify-center pointer-events-none opacity-30 z-10"
         >
           <img
             src={url("earth")} // Points to /images/earth.svg
-            style={{ width: "80%", marginBottom: "0" }} // Adjusted width and margin
+            className="w-[80%] mb-0"
             alt="earth"
           />
         </ParallaxLayer>

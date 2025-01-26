@@ -43,16 +43,38 @@ export default function Home() {
               textShadow: "2px 2px 4px rgba(0, 0, 0, 0.2)", // Add shadow for better visibility
             }}
           >
-            Welcome to My Portfolio
+            Explore My Portfolio
           </h1>
           <p style={{ fontSize: "1.5rem", opacity: 0.8 }}>
             Scroll down to explore my work, skills, and experience
           </p>
           <img
             src={url("leaf")} // Points to /images/leaf.svg
-            style={{ width: "10%", marginTop: "2rem", cursor: "pointer" }}
+            style={{
+              width: "10%",
+              marginTop: "2rem",
+              cursor: "pointer",
+              animation: "bounce 2s infinite", // Add bounce animation
+            }}
             alt="scroll down"
           />
+
+          {/* CSS for Bounce Animation */}
+          <style>
+            {`
+      @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-20px);
+        }
+        60% {
+          transform: translateY(-10px);
+        }
+      }
+    `}
+          </style>
         </ParallaxLayer>
 
         {/* Section 2: About Me */}
@@ -79,11 +101,57 @@ export default function Home() {
             >
               About Me
             </h2>
+            {/* Introduction */}
+            <p
+              style={{
+                fontSize: "1.2rem",
+                lineHeight: "1.8",
+                marginBottom: "1.5rem",
+              }}
+            >
+              Hi, I'm Cleeve Wong, a passionate and creative developer with a
+              love for building modern, user-friendly web applications. With{" "}
+              <span
+                style={{
+                  backgroundColor: "#FFFACD",
+                  color: "#556B2F",
+                  padding: "0.1rem 0.3rem",
+                  borderRadius: "4px",
+                }}
+              >
+                1.5 years of experience in React
+              </span>
+              , I enjoy turning ideas into reality through clean, efficient, and
+              scalable code.
+            </p>
+            {/* Additional Details */}
             <p style={{ fontSize: "1.2rem", lineHeight: "1.8" }}>
-              I'm a passionate developer with expertise in React, Next.js, and
-              modern web technologies. I love building creative and interactive
-              user experiences. When I'm not coding, you can find me exploring
-              new design trends or contributing to open-source projects.
+              I specialize in{" "}
+              <span
+                style={{
+                  backgroundColor: "#FFFACD",
+                  color: "#556B2F",
+                  padding: "0.1rem 0.3rem",
+                  borderRadius: "4px",
+                }}
+              >
+                React
+              </span>
+              ,{" "}
+              <span
+                style={{
+                  backgroundColor: "#FFFACD",
+                  color: "#556B2F",
+                  padding: "0.1rem 0.3rem",
+                  borderRadius: "4px",
+                }}
+              >
+                Next.js
+              </span>
+              , and modern web technologies. I'm always exploring new tools and
+              frameworks to enhance my skill set. When I'm not coding, you can
+              find me contributing to open-source projects, learning new design
+              trends, or enjoying the great outdoors.
             </p>
           </div>
         </ParallaxLayer>
@@ -102,36 +170,164 @@ export default function Home() {
             zIndex: 1, // Ensure content is above the mountain
           }}
         >
-          <div>
+          <div style={{ width: "100%" }}>
             <h2
               style={{
                 fontSize: "3rem",
-                marginBottom: "1rem",
+                marginBottom: "2rem",
                 fontWeight: "bold",
+                textAlign: "center",
               }}
             >
               Skills
             </h2>
-            <div style={{ display: "flex", gap: "2rem" }}>
-              <div style={{ textAlign: "center" }}>
-                <img src={url("react")} style={{ width: "50px" }} alt="React" />
-                <p>React</p>
+            {/* Frontend Skills */}
+            <div style={{ marginBottom: "2rem" }}>
+              <h3
+                style={{
+                  fontSize: "2rem",
+                  marginBottom: "1rem",
+                  fontWeight: "bold",
+                  color: "#556B2F",
+                }}
+              >
+                Frontend
+              </h3>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(100px, 1fr))",
+                  gap: "1.5rem",
+                  justifyContent: "center",
+                  alignItems: "center", // Align items vertically in the grid
+                }}
+              >
+                {[
+                  { name: "React", icon: "react" },
+                  { name: "JavaScript", icon: "javascript" },
+                  { name: "HTML", icon: "html" },
+                  { name: "CSS", icon: "css" },
+                  { name: "Next.js", icon: "next" },
+                  { name: "TypeScript", icon: "ts" },
+                ].map((skill, index) => (
+                  <div
+                    key={index}
+                    style={{
+                      display: "flex", // Use flexbox for alignment
+                      flexDirection: "column", // Stack icon and text vertically
+                      alignItems: "center", // Center items horizontally
+                      justifyContent: "center", // Center items vertically
+                      textAlign: "center", // Center text horizontally
+                      cursor: "pointer",
+                    }}
+                  >
+                    <img
+                      src={url(skill.icon)}
+                      style={{ width: "50px", marginBottom: "0.5rem" }}
+                      alt={skill.name}
+                    />
+                    <p
+                      style={{ fontSize: "1rem", color: "#556B2F", margin: 0 }}
+                    >
+                      {skill.name}
+                    </p>
+                  </div>
+                ))}
               </div>
-              <div style={{ textAlign: "center" }}>
-                <img
-                  src={url("node")}
-                  style={{ width: "50px" }}
-                  alt="Node.js"
-                />
-                <p>Node.js</p>
+            </div>
+
+            {/* Backend Skills */}
+            <div style={{ marginBottom: "2rem" }}>
+              <h3
+                style={{
+                  fontSize: "2rem",
+                  marginBottom: "1rem",
+                  fontWeight: "bold",
+                  color: "#556B2F",
+                }}
+              >
+                Backend
+              </h3>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(100px, 1fr))",
+                  gap: "1.5rem",
+                  justifyContent: "center",
+                }}
+              >
+                {[
+                  { name: "Node.js", icon: "node" },
+                  { name: "Django", icon: "django" },
+                  { name: "Laravel", icon: "laravel" },
+                  { name: "MySQL", icon: "mysql" },
+                ].map((skill, index) => (
+                  <div
+                    key={index}
+                    style={{
+                      display: "flex", // Use flexbox for alignment
+                      flexDirection: "column", // Stack icon and text vertically
+                      alignItems: "center", // Center items horizontally
+                      justifyContent: "center", // Center items vertically
+                      textAlign: "center", // Center text horizontally
+                      cursor: "pointer",
+                    }}
+                  >
+                    <img
+                      src={url(skill.icon)}
+                      style={{ width: "50px", marginBottom: "0.5rem" }}
+                      alt={skill.name}
+                    />
+                    <p style={{ fontSize: "1rem", color: "#556B2F" }}>
+                      {skill.name}
+                    </p>
+                  </div>
+                ))}
               </div>
-              <div style={{ textAlign: "center" }}>
-                <img
-                  src={url("javascript")}
-                  style={{ width: "50px" }}
-                  alt="JavaScript"
-                />
-                <p>JavaScript</p>
+            </div>
+
+            {/* Tools */}
+            <div>
+              <h3
+                style={{
+                  fontSize: "2rem",
+                  marginBottom: "1rem",
+                  fontWeight: "bold",
+                  color: "#556B2F",
+                }}
+              >
+                Tools
+              </h3>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(100px, 1fr))",
+                  gap: "1.5rem",
+                  justifyContent: "center",
+                }}
+              >
+                {[{ name: "Git", icon: "git" }].map((skill, index) => (
+                  <div
+                    key={index}
+                    style={{
+                      display: "flex", // Use flexbox for alignment
+                      flexDirection: "column", // Stack icon and text vertically
+                      alignItems: "center", // Center items horizontally
+                      justifyContent: "center", // Center items vertically
+                      textAlign: "center", // Center text horizontally
+                      cursor: "pointer",
+                    }}
+                  >
+                    <img
+                      src={url(skill.icon)}
+                      style={{ width: "50px", marginBottom: "0.5rem" }}
+                      alt={skill.name}
+                    />
+                    <p style={{ fontSize: "1rem", color: "#556B2F" }}>
+                      {skill.name}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -365,14 +561,28 @@ export default function Home() {
           speed={0.5}
           style={{ opacity: 0.2, zIndex: 0 }}
         >
+          {/* Top Right Leaf */}
           <img
             src={url("leaf")} // Points to /images/leaf.svg
-            style={{ display: "block", width: "10%", marginLeft: "55%" }}
+            style={{
+              position: "absolute",
+              top: "10%",
+              right: "10%",
+              width: "8%",
+              transform: "rotate(20deg)", // Add a slight rotation for a natural look
+            }}
             alt="leaf"
           />
+          {/* Top Left Leaf */}
           <img
             src={url("leaf")} // Points to /images/leaf.svg
-            style={{ display: "block", width: "10%", marginLeft: "15%" }}
+            style={{
+              position: "absolute",
+              top: "15%",
+              left: "10%",
+              width: "8%",
+              transform: "rotate(-15deg)", // Add a slight rotation for a natural look
+            }}
             alt="leaf"
           />
         </ParallaxLayer>
@@ -382,19 +592,33 @@ export default function Home() {
           speed={0.3}
           style={{ opacity: 0.3, zIndex: 0 }}
         >
+          {/* Bottom Right Leaf */}
           <img
             src={url("leaf")} // Points to /images/leaf.svg
-            style={{ display: "block", width: "10%", marginLeft: "70%" }}
+            style={{
+              position: "absolute",
+              bottom: "10%",
+              right: "15%",
+              width: "8%",
+              transform: "rotate(-10deg)", // Add a slight rotation for a natural look
+            }}
             alt="leaf"
           />
+          {/* Bottom Left Leaf */}
           <img
             src={url("leaf")} // Points to /images/leaf.svg
-            style={{ display: "block", width: "10%", marginLeft: "40%" }}
+            style={{
+              position: "absolute",
+              bottom: "15%",
+              left: "15%",
+              width: "8%",
+              transform: "rotate(15deg)", // Add a slight rotation for a natural look
+            }}
             alt="leaf"
           />
         </ParallaxLayer>
 
-        {/* Mountains */}
+        {/* Earth Background */}
         <ParallaxLayer
           offset={2.5}
           speed={-0.1} // Slower speed for subtle movement
@@ -404,13 +628,13 @@ export default function Home() {
             justifyContent: "center",
             pointerEvents: "none",
             opacity: 0.6, // Reduced opacity for subtlety
-            zIndex: 0, // Ensure mountain is below content
+            zIndex: 0, // Ensure earth is below content
           }}
         >
           <img
-            src={url("earth")} // Points to /images/mountain.svg
+            src={url("earth")} // Points to /images/earth.svg
             style={{ width: "80%", marginBottom: "0" }} // Adjusted width and margin
-            alt="mountain"
+            alt="earth"
           />
         </ParallaxLayer>
       </Parallax>

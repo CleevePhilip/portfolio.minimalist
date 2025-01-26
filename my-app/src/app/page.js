@@ -1,6 +1,6 @@
 "use client"; // Mark as a client component
 
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 
 // Helper function to construct the URL for assets
@@ -9,6 +9,16 @@ const url = (name, wrap = false) =>
 
 export default function Home() {
   const parallax = useRef(null);
+  const [cursorStyle, setCursorStyle] = useState("default");
+
+  // Handle scroll changes
+  const handleScroll = (offset) => {
+    if (offset === 0) {
+      setCursorStyle("pointer"); // Change cursor on the first section
+    } else {
+      setCursorStyle("default"); // Reset cursor on other sections
+    }
+  };
 
   return (
     <div
@@ -17,9 +27,54 @@ export default function Home() {
         height: "100vh",
         overflow: "hidden",
         background: "#F5F5DC", // Beige background
+        cursor: cursorStyle, // Custom cursor
       }}
     >
-      <Parallax ref={parallax} pages={6}>
+      <Parallax
+        ref={parallax}
+        pages={6}
+        onChange={handleScroll} // Listen for scroll changes
+      >
+        {/* Floating Particles */}
+        <ParallaxLayer
+          offset={0}
+          speed={0.2}
+          style={{ zIndex: 1, pointerEvents: "none" }}
+        >
+          {Array.from({ length: 50 }).map((_, i) => (
+            <div
+              key={i}
+              style={{
+                position: "absolute",
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                width: "4px",
+                height: "4px",
+                borderRadius: "50%",
+                backgroundColor: "#8FBC8F", // Soft green for particles
+                opacity: Math.random() * 0.8 + 0.2,
+                animation: `float ${
+                  Math.random() * 5 + 3
+                }s infinite ease-in-out`,
+              }}
+            />
+          ))}
+
+          {/* CSS for Floating Animation */}
+          <style>
+            {`
+              @keyframes float {
+                0%, 100% {
+                  transform: translateY(0);
+                }
+                50% {
+                  transform: translateY(-20px);
+                }
+              }
+            `}
+          </style>
+        </ParallaxLayer>
+
         {/* Section 1: Hero Section */}
         <ParallaxLayer
           offset={0}
@@ -59,23 +114,88 @@ export default function Home() {
             alt="scroll down"
           />
 
-          {/* CSS for Bounce Animation */}
+          {/* Smooth Scroll Indicator */}
+          <div
+            style={{
+              position: "absolute",
+              bottom: "20px",
+              left: "50%",
+              transform: "translateX(-50%)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <div
+              style={{
+                width: "20px",
+                height: "40px",
+                borderRadius: "10px",
+                border: "2px solid #556B2F",
+                position: "relative",
+              }}
+            >
+              <div
+                style={{
+                  width: "4px",
+                  height: "10px",
+                  borderRadius: "2px",
+                  backgroundColor: "#556B2F",
+                  position: "absolute",
+                  top: "5px",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  animation: "scroll 2s infinite",
+                }}
+              />
+            </div>
+            <p
+              style={{
+                marginTop: "10px",
+                fontSize: "0.9rem",
+                color: "#556B2F",
+              }}
+            >
+              Scroll Down
+            </p>
+          </div>
+
+          {/* CSS for Bounce and Scroll Animations */}
           <style>
             {`
-      @keyframes bounce {
-        0%, 20%, 50%, 80%, 100% {
-          transform: translateY(0);
-        }
-        40% {
-          transform: translateY(-20px);
-        }
-        60% {
-          transform: translateY(-10px);
-        }
-      }
-    `}
+              @keyframes bounce {
+                0%, 20%, 50%, 80%, 100% {
+                  transform: translateY(0);
+                }
+                40% {
+                  transform: translateY(-20px);
+                }
+                60% {
+                  transform: translateY(-10px);
+                }
+              }
+              @keyframes scroll {
+                0%, 100% {
+                  transform: translate(-50%, 0);
+                }
+                50% {
+                  transform: translate(-50%, 10px);
+                }
+              }
+            `}
           </style>
         </ParallaxLayer>
+
+        {/* Gradient Overlay */}
+        <ParallaxLayer
+          offset={1}
+          speed={0.1}
+          style={{
+            background: "linear-gradient(to bottom, #8FBC8F, #F5F5DC)",
+            zIndex: 0,
+            pointerEvents: "none",
+          }}
+        />
 
         {/* Section 2: About Me */}
         <ParallaxLayer
@@ -101,7 +221,6 @@ export default function Home() {
             >
               About Me
             </h2>
-            {/* Introduction */}
             <p
               style={{
                 fontSize: "1.2rem",
@@ -124,7 +243,6 @@ export default function Home() {
               , I enjoy turning ideas into reality through clean, efficient, and
               scalable code.
             </p>
-            {/* Additional Details */}
             <p style={{ fontSize: "1.2rem", lineHeight: "1.8" }}>
               I specialize in{" "}
               <span
@@ -156,6 +274,41 @@ export default function Home() {
           </div>
         </ParallaxLayer>
 
+        {/* Wave Animation */}
+        <ParallaxLayer
+          offset={2}
+          speed={0.2}
+          style={{ zIndex: 1, pointerEvents: "none" }}
+        >
+          <div
+            style={{
+              position: "absolute",
+
+              bottom: 0,
+              left: 0,
+              width: "100%",
+              color: "red",
+              height: "100px",
+              background: `url(${url("wave", true)}) repeat-x`,
+              animation: "wave 10s linear infinite",
+            }}
+          />
+
+          {/* CSS for Wave Animation */}
+          <style>
+            {`
+              @keyframes wave {
+                0% {
+                  background-position-x: 0;
+                }
+                100% {
+                  background-position-x: 1000px;
+                }
+              }
+            `}
+          </style>
+        </ParallaxLayer>
+
         {/* Section 3: Skills */}
         <ParallaxLayer
           offset={2}
@@ -167,7 +320,7 @@ export default function Home() {
             backgroundColor: "#F5F5DC", // Beige background
             color: "#556B2F", // Forest green text
             padding: "0 10%",
-            zIndex: 1, // Ensure content is above the mountain
+            zIndex: 0, // Ensure content is above the mountain
           }}
         >
           <div style={{ width: "100%" }}>
@@ -199,7 +352,7 @@ export default function Home() {
                   gridTemplateColumns: "repeat(auto-fit, minmax(100px, 1fr))",
                   gap: "1.5rem",
                   justifyContent: "center",
-                  alignItems: "center", // Align items vertically in the grid
+                  alignItems: "center",
                 }}
               >
                 {[
@@ -213,11 +366,11 @@ export default function Home() {
                   <div
                     key={index}
                     style={{
-                      display: "flex", // Use flexbox for alignment
-                      flexDirection: "column", // Stack icon and text vertically
-                      alignItems: "center", // Center items horizontally
-                      justifyContent: "center", // Center items vertically
-                      textAlign: "center", // Center text horizontally
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      textAlign: "center",
                       cursor: "pointer",
                     }}
                   >
@@ -265,11 +418,11 @@ export default function Home() {
                   <div
                     key={index}
                     style={{
-                      display: "flex", // Use flexbox for alignment
-                      flexDirection: "column", // Stack icon and text vertically
-                      alignItems: "center", // Center items horizontally
-                      justifyContent: "center", // Center items vertically
-                      textAlign: "center", // Center text horizontally
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      textAlign: "center",
                       cursor: "pointer",
                     }}
                   >
@@ -310,11 +463,11 @@ export default function Home() {
                   <div
                     key={index}
                     style={{
-                      display: "flex", // Use flexbox for alignment
-                      flexDirection: "column", // Stack icon and text vertically
-                      alignItems: "center", // Center items horizontally
-                      justifyContent: "center", // Center items vertically
-                      textAlign: "center", // Center text horizontally
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      textAlign: "center",
                       cursor: "pointer",
                     }}
                   >
@@ -331,6 +484,39 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </ParallaxLayer>
+
+        {/* Abstract Shapes */}
+        <ParallaxLayer
+          offset={1.5}
+          speed={0.3}
+          style={{ zIndex: 0, pointerEvents: "none" }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              top: "20%",
+              left: "10%",
+              width: "100px",
+              height: "100px",
+              borderRadius: "50%",
+              backgroundColor: "rgba(143, 188, 143, 0.3)", // Soft green with transparency
+              transform: "rotate(45deg)",
+              animation: "float 6s infinite ease-in-out",
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              top: "50%",
+              right: "10%",
+              width: "80px",
+              height: "80px",
+              backgroundColor: "rgba(143, 188, 143, 0.3)", // Soft green with transparency
+              clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
+              animation: "float 8s infinite ease-in-out",
+            }}
+          />
         </ParallaxLayer>
 
         {/* Section 4: Experience */}
@@ -627,8 +813,8 @@ export default function Home() {
             alignItems: "flex-end",
             justifyContent: "center",
             pointerEvents: "none",
-            opacity: 0.6, // Reduced opacity for subtlety
-            zIndex: 0, // Ensure earth is below content
+            opacity: 0.3, // Reduced opacity for subtlety
+            zIndex: 1, // Ensure earth is below content
           }}
         >
           <img

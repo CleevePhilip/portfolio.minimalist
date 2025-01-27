@@ -29,6 +29,7 @@ body {
     background-position: 0% 50%;
   }
 }
-.animate-gradientShift {
-  animation: gradientShift 10s ease infinite;
+.highlight-text {
+  @apply bg-[#FFFACD] text-[#556B2F] px-1 py-0.5 rounded;
+  box-shadow: 0 2px 4px rgba(85, 107, 47, 0.1);
 }

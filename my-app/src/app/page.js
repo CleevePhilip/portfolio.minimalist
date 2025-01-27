@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
-import ProjectCard from "@/components/ProjectCard";
+
 // Helper function to construct the URL for assets
 const url = (name, wrap = false) =>
   `${wrap ? "url(" : ""}/images/${name}.svg${wrap ? ")" : ""}`;
@@ -10,7 +10,52 @@ const url = (name, wrap = false) =>
 export default function Home() {
   const parallax = useRef(null);
   const [cursorStyle, setCursorStyle] = useState("default");
-
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeProjectIndex, setActiveProjectIndex] = useState(0);
+  const experiences = [
+    {
+      id: 1,
+      title: "Fullstack Project",
+      company: "ShopShere E-commerce Platform",
+      description:
+        "Designed and developed a responsive e-commerce web application using React (TypeScript) for frontend, Express.js for backend, and MySQL for database. Implemented user authentication, product browsing features, and a seamless shopping cart experience with real-time updates.",
+    },
+    {
+      id: 2,
+      title: "Frontend Project",
+      company: "Personal Portfolio Project",
+      description:
+        "Created a modern, responsive portfolio website using Next.js with dynamic project showcases. Implemented SSR (Server-Side Rendering) and optimized performance through code-splitting and lazy loading.",
+    },
+    {
+      id: 3,
+      title: "Computer Vision Developer",
+      company: "Capstone DressCan (Holy Cross College)",
+      description:
+        "Developed Python-based desktop application using Tkinter GUI and YOLOv8 object detection model to analyze student attire compliance. Integrated OpenCV for real-time image processing and compliance reporting.",
+    },
+    {
+      id: 4,
+      title: "Frontend Project",
+      company: "MedSched Healthcare Platform",
+      description:
+        "Built landing page and core UI for doctor appointment system using React and Tailwind CSS. Implemented responsive design patterns and optimized form handling for appointment scheduling workflows.",
+    },
+    {
+      id: 5,
+      title: "Frontend Project",
+      company: "Brainwave.io Consultancy",
+      description:
+        "Developed dynamic landing page with interactive elements using React and Tailwind CSS. Implemented smooth animations and mobile-first responsive layout to showcase company services.",
+    },
+    {
+      id: 6,
+      title: "Academic Achievement",
+      company: "Holy Cross College of Davao",
+      description:
+        "Awarded for excellence in Information Technology program. Recognized for top performance in software development, system design, and academic research projects.",
+    },
+  ];
   // Handle scroll changes
   const handleScroll = (offset) => {
     if (offset === 0) {
@@ -34,39 +79,34 @@ export default function Home() {
       {title}
     </h2>
   );
-  // Project data
   const projects = [
     {
       id: 1,
-      title: "Project 1",
-      description: "A modern web application built with React and Next.js.",
-      image: "/images/project1.png", // Path to image in the public folder
+      title: "Healthcare Platform Landing Page",
+      description:
+        "A responsive landing page for healthcare services built with React and Tailwind CSS, featuring mobile-first design and smooth animations.",
+      image: "/images/healthcare.png",
       link: "#",
-      techStack: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+      techStack: [
+        "React",
+        "Tailwind CSS",
+        "Responsive Design",
+        "CSS Animations",
+      ],
     },
     {
       id: 2,
-      title: "Project 2",
-      description: "An e-commerce platform with a responsive design.",
-      image: "/images/project1.png", // Path to image in the public folder
+      title: "Consultancy Services Landing Page",
+      description:
+        "Modern business consultancy website developed using React and Tailwind CSS, with adaptive layouts for all screen sizes and devices.",
+      image: "/images/consultancy.png",
       link: "#",
-      techStack: ["React", "Node.js", "Express", "MongoDB"],
-    },
-    {
-      id: 3,
-      title: "Project 2",
-      description: "An e-commerce platform with a responsive design.",
-      image: "/images/project1.png", // Path to image in the public folder
-      link: "#",
-      techStack: ["React", "Node.js", "Express", "MongoDB"],
-    },
-    {
-      id: 4,
-      title: "Project 2",
-      description: "An e-commerce platform with a responsive design.",
-      image: "/images/project1.png", // Path to image in the public folder
-      link: "#",
-      techStack: ["React", "Node.js", "Express", "MongoDB"],
+      techStack: [
+        "React",
+        "Tailwind CSS",
+        "Mobile-First Approach",
+        "Flexbox/Grid",
+      ],
     },
   ];
   return (
@@ -250,76 +290,95 @@ export default function Home() {
         <ParallaxLayer
           offset={1}
           speed={0.2}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "#8FBC8F", // Forest green background
-            color: "#FFFFFF", // White text
-            padding: "0 10%",
-            zIndex: 1, // Ensure content is above the mountain
-          }}
+          className="flex items-center justify-center bg-[#8FBC8F] text-white px-[10%] z-10"
         >
-          <div>
-            <h2
-              style={{
-                fontSize: "3rem",
-                marginBottom: "1rem",
-                fontWeight: "bold",
-              }}
-            >
+          <div className="max-w-6xl">
+            <h2 className="text-5xl mb-6 font-bold animate-fade-in-up">
               About Me
             </h2>
-            <p
-              style={{
-                fontSize: "1.2rem",
-                lineHeight: "1.8",
-                marginBottom: "1.5rem",
-              }}
-            >
-              Hi, I'm Cleeve Wong, a passionate and creative developer with a
-              love for building modern, user-friendly web applications. With{" "}
-              <span
-                style={{
-                  backgroundColor: "#FFFACD",
-                  color: "#556B2F",
-                  padding: "0.1rem 0.3rem",
-                  borderRadius: "4px",
-                }}
-              >
-                1.5 years of experience in React
-              </span>
-              , I enjoy turning ideas into reality through clean, efficient, and
-              scalable code.
-            </p>
-            <p style={{ fontSize: "1.2rem", lineHeight: "1.8" }}>
-              I specialize in{" "}
-              <span
-                style={{
-                  backgroundColor: "#FFFACD",
-                  color: "#556B2F",
-                  padding: "0.1rem 0.3rem",
-                  borderRadius: "4px",
-                }}
-              >
-                React
-              </span>
-              ,{" "}
-              <span
-                style={{
-                  backgroundColor: "#FFFACD",
-                  color: "#556B2F",
-                  padding: "0.1rem 0.3rem",
-                  borderRadius: "4px",
-                }}
-              >
-                Next.js
-              </span>
-              , and modern web technologies. I'm always exploring new tools and
-              frameworks to enhance my skill set. When I'm not coding, you can
-              find me contributing to open-source projects, learning new design
-              trends, or enjoying the great outdoors.
-            </p>
+
+            <div className="space-y-6">
+              <p className="text-xl leading-relaxed animate-fade-in-up delay-100">
+                Hi, I'm Cleeve Wong, a passionate full-stack developer crafting
+                modern web experiences. With{" "}
+                <span className="highlight-text">
+                  1.5 years of React expertise
+                </span>
+                , I transform ideas into performant applications through clean,
+                maintainable code.
+              </p>
+
+              <p className="text-xl leading-relaxed animate-fade-in-up delay-200">
+                My core stack includes{" "}
+                <span className="highlight-text">React</span> and{" "}
+                <span className="highlight-text">Next.js</span>, enhanced with
+                modern tools. I'm constantly exploring new technologies while
+                maintaining robust development practices.
+              </p>
+            </div>
+
+            {/* Tech Stack Section */}
+            <div className="mt-12 animate-fade-in-up delay-300">
+              <h3 className="flex items-center gap-3 text-2xl font-semibold mb-6 text-[#FFFACD]">
+                <svg
+                  className="w-6 h-6 animate-bounce"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  />
+                </svg>
+                Current Tech Arsenal
+              </h3>
+
+              <div className="flex flex-wrap gap-4">
+                {[
+                  {
+                    name: "Tailwind CSS",
+                    icon: "🌿",
+                    class:
+                      "border-emerald-200 text-emerald-100 bg-[#8FBC8F]/20",
+                  },
+                  {
+                    name: "React",
+                    icon: "⚛️",
+                    class: "border-sky-200 text-sky-100 bg-[#8FBC8F]/20",
+                  },
+                  {
+                    name: "TypeScript",
+                    icon: "📘",
+                    class: "border-blue-200 text-blue-100 bg-[#8FBC8F]/20",
+                  },
+                  {
+                    name: "Express.js",
+                    icon: "🚀",
+                    class: "border-amber-200 text-amber-100 bg-[#8FBC8F]/20",
+                  },
+                  {
+                    name: "MySQL",
+                    icon: "🗃️",
+                    class: "border-teal-200 text-teal-100 bg-[#8FBC8F]/20",
+                  },
+                ].map((tech, index) => (
+                  <div
+                    key={index}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-full border 
+              transition-all duration-300 hover:scale-105 hover:shadow-lg 
+              motion-reduce:transition-none ${tech.class}`}
+                  >
+                    <span className="text-xl">{tech.icon}</span>
+                    <span className="text-sm font-medium tracking-wide">
+                      {tech.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </ParallaxLayer>
 
@@ -572,162 +631,198 @@ export default function Home() {
         <ParallaxLayer
           offset={3}
           speed={0.4}
-          className="flex items-center justify-center bg-[#8FBC8F] text-white p-8 md:p-10 lg:p-12 z-10"
+          className="flex items-center justify-center bg-[#8FBC8F] text-white p-4 md:p-6 lg:p-8 z-10"
         >
           <div className="w-full max-w-[1200px]">
-            <h2 className="text-[clamp(2rem,6vw,3rem)] font-bold mb-4 text-center">
+            <h2 className="text-[clamp(1.5rem,6vw,2.5rem)] font-bold mb-4 md:mb-6 text-center">
               Experience
             </h2>
-            <div className="flex flex-col gap-6 px-4">
-              {/* Experience Card 1 */}
-              <div className="bg-white p-4 rounded-lg shadow-md">
-                <h3 className="text-[#556B2F] text-[clamp(1.25rem,5vw,1.5rem)] mb-2">
-                  Fullstack Developer - Shopshere
-                </h3>
-                <p className="text-[#556B2F] text-[clamp(0.9rem,4vw,1rem)] leading-relaxed">
-                  Designed and developed a responsive e-commerce web application
-                  using React (TypeScript), Express.js, and MySQL. Implemented
-                  user authentication, product browsing, and a seamless shopping
-                  cart experience.
-                </p>
+
+            <div className="flex flex-col gap-4 md:gap-6 px-2 sm:px-4">
+              {/* Experience Tabs */}
+              <div className="flex flex-wrap gap-2 md:gap-3 justify-center">
+                {experiences.map((exp, index) => (
+                  <button
+                    key={exp.id}
+                    onClick={() => setActiveIndex(index)}
+                    className={`px-4 py-2 text-sm md:text-base rounded-full transition-all duration-300 ${
+                      activeIndex === index
+                        ? "bg-white text-[#556B2F] shadow-md"
+                        : "bg-transparent text-white hover:bg-white/20"
+                    }`}
+                  >
+                    {exp.company}
+                  </button>
+                ))}
               </div>
 
-              {/* Experience Card 2 */}
-              <div className="bg-white p-4 rounded-lg shadow-md">
-                <h3 className="text-[#556B2F] text-[clamp(1.25rem,5vw,1.5rem)] mb-2">
-                  Frontend Developer - Personal Portfolio
-                </h3>
-                <p className="text-[#556B2F] text-[clamp(0.9rem,4vw,1rem)] leading-relaxed">
-                  Built a modern, responsive portfolio website using Next.js to
-                  showcase projects and skills, demonstrating expertise in
-                  React-based frameworks and web development best practices.
-                </p>
-              </div>
-
-              {/* Experience Card 3 */}
-              <div className="bg-white p-4 rounded-lg shadow-md">
-                <h3 className="text-[#556B2F] text-[clamp(1.25rem,5vw,1.5rem)] mb-2">
-                  Frontend Developer - MedSched
-                </h3>
-                <p className="text-[#556B2F] text-[clamp(0.9rem,4vw,1rem)] leading-relaxed">
-                  Developed a landing page for a doctor appointment web app
-                  using React and Tailwind CSS, focusing on a modern, responsive
-                  design to enhance user experience and streamline appointment
-                  scheduling.
-                </p>
-              </div>
-
-              {/* Experience Card 4 */}
-              <div className="bg-white p-4 rounded-lg shadow-md">
-                <h3 className="text-[#556B2F] text-[clamp(1.25rem,5vw,1.5rem)] mb-2">
-                  Frontend Developer - Brainwave.io
-                </h3>
-                <p className="text-[#556B2F] text-[clamp(0.9rem,4vw,1rem)] leading-relaxed">
-                  Created a dynamic, user-friendly landing page for a
-                  consultancy firm using React and Tailwind CSS, emphasizing a
-                  seamless and responsive design to highlight the company's
-                  services and expertise.
-                </p>
+              {/* Animated Content Area */}
+              <div className="relative h-[230px]  lg:min-h-[500px] md:min-h-[400px]">
+                {experiences.map((exp, index) => (
+                  <div
+                    key={exp.id}
+                    className={`absolute inset-0 bg-white p-4 md:p-6 rounded-lg shadow-md transition-all duration-300 ${
+                      activeIndex === index
+                        ? "opacity-100 translate-y-0"
+                        : "opacity-0 translate-y-4 pointer-events-none"
+                    }`}
+                  >
+                    <h3 className="text-[#556B2F] text-lg md:text-xl lg:text-2xl font-bold mb-2 md:mb-4">
+                      {exp.title}
+                    </h3>
+                    <p className="text-[#556B2F] text-sm md:text-base leading-relaxed">
+                      {exp.description}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </ParallaxLayer>
-
-        {/* Section 5: Projects */}
         {/* Section 5: Projects */}
         <ParallaxLayer
           offset={4}
           speed={0.5}
-          className="flex items-center justify-center bg-gradient-to-r from-[#F5F5DC] via-[#E6E6CB] to-[#F5F5DC] bg-[length:200%_200%] animate-gradientShift text-[#556B2F] p-8 md:p-10 lg:p-12 z-0"
+          className="flex items-center justify-center bg-[#F5F5DC] text-[#556B2F] p-4 md:p-6 lg:p-8 z-0"
         >
           <div className="w-full max-w-[1200px]">
-            <h2 className="text-[clamp(2rem,6vw,3rem)] font-bold mb-8 text-center">
+            <h2 className="text-[clamp(1.5rem,6vw,2.5rem)] font-bold mb-6 md:mb-8 text-center">
               Projects
             </h2>
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-8 justify-center px-4">
-              {projects.map((project) => (
-                <div
-                  key={project.id}
-                  className="relative w-full h-[300px] rounded-lg overflow-hidden shadow-lg cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105"
-                  onMouseEnter={(e) => {
-                    e.currentTarget
-                      .querySelector(".hover-overlay")
-                      .classList.remove("opacity-0");
-                    e.currentTarget
-                      .querySelector(".hover-overlay")
-                      .classList.add("opacity-100");
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget
-                      .querySelector(".hover-overlay")
-                      .classList.remove("opacity-100");
-                    e.currentTarget
-                      .querySelector(".hover-overlay")
-                      .classList.add("opacity-0");
-                  }}
-                >
-                  {/* Project Image */}
-                  <img
-                    src={project.image}
-                    alt={project.name}
-                    className="w-full h-full object-cover transition-transform duration-300 ease-in-out"
-                  />
 
-                  {/* Hover Overlay */}
-                  <div className="hover-overlay absolute top-0 left-0 w-full h-full bg-[rgba(85,107,47,0.9)] text-white flex flex-col items-center justify-center opacity-0 transition-opacity duration-300 ease-in-out p-6 text-center">
-                    {/* Project Name */}
-                    <h3 className="text-2xl font-bold mb-3">{project.name}</h3>
+            {/* Slider Container */}
+            <div className="relative overflow-hidden w-full h-[500px] md:h-[600px]">
+              {/* Slides */}
+              <div
+                className="flex transition-transform duration-500 ease-in-out"
+                style={{
+                  transform: `translateX(-${activeProjectIndex * 100}%)`,
+                }}
+              >
+                {projects.map((project) => (
+                  <div
+                    key={project.id}
+                    className="w-full flex-shrink-0 px-4 h-full relative group"
+                  >
+                    {/* Project Card */}
+                    <div className="w-full h-full rounded-lg overflow-hidden shadow-lg relative">
+                      <img
+                        src={project.image}
+                        alt={project.name}
+                        className="w-full h-full object-cover"
+                      />
 
-                    {/* Project Description */}
-                    <p className="text-sm mb-4">{project.description}</p>
-
-                    {/* Tech Stack */}
-                    <p className="text-sm mb-4">
-                      <strong>Tech Stack:</strong> {project.techStack}
-                    </p>
-
-                    {/* View Repository Button */}
-                    <a
-                      href={project.repositoryUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-6 py-2 bg-white text-[#556B2F] rounded-lg font-bold no-underline transition-colors duration-300 ease-in-out hover:bg-[#F5F5DC] flex items-center gap-2"
-                    >
-                      <span>View Repository</span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </a>
+                      {/* Info Overlay */}
+                      <div className="absolute inset-0 bg-[#8FBC8F] text-white p-6 flex flex-col items-center justify-center text-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                        <h3 className="text-xl md:text-2xl font-bold mb-3">
+                          {project.name}
+                        </h3>
+                        <p className="text-sm md:text-base mb-4">
+                          {project.description}
+                        </p>
+                        <p className="text-sm md:text-base mb-4">
+                          <strong>Tech Stack:</strong> {project.techStack}
+                        </p>
+                        <a
+                          href={project.repositoryUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-6 py-2 bg-white text-[#556B2F] rounded-lg font-bold hover:bg-[#F5F5DC] transition-colors flex items-center gap-2"
+                        >
+                          <span>View Code</span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+
+              {/* Navigation Arrows */}
+              <button
+                onClick={() =>
+                  setActiveProjectIndex((prev) => Math.max(prev - 1, 0))
+                }
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/30 text-[#556B2F] p-2 rounded-full hover:bg-white/50 transition-colors"
+              >
+                <svg
+                  className="w-8 h-8"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+              </button>
+
+              <button
+                onClick={() =>
+                  setActiveProjectIndex((prev) =>
+                    Math.min(prev + 1, projects.length - 1)
+                  )
+                }
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/30 text-[#556B2F] p-2 rounded-full hover:bg-white/50 transition-colors"
+              >
+                <svg
+                  className="w-8 h-8"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </button>
+
+              {/* Progress Dots */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                {projects.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActiveProjectIndex(index)}
+                    className={`w-3 h-3 rounded-full transition-colors ${
+                      index === activeProjectIndex ? "bg-white" : "bg-white/50"
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
 
-            {/* View More Projects Button */}
-            <div className="flex justify-center mt-10">
+            {/* View More Button */}
+            <div className="flex justify-center mt-6 md:mt-8">
               <a
-                href="/projects" // Replace with your actual link
-                className="px-8 py-3 bg-[#556B2F] text-white rounded-lg font-bold no-underline transition-colors duration-300 ease-in-out hover:bg-[#3D4D2B] flex items-center gap-2"
+                href="/projects"
+                className="px-6 py-2 md:px-8 md:py-3 bg-[#556B2F] text-white rounded-lg font-bold hover:bg-[#3D4D2B] transition-colors flex items-center gap-2"
               >
-                <span>View More Projects</span>
+                <span>View All Projects</span>
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 20 20"
+                  className="w-5 h-5"
                   fill="currentColor"
+                  viewBox="0 0 20 20"
                 >
                   <path
                     fillRule="evenodd"
-                    d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
                     clipRule="evenodd"
                   />
                 </svg>
@@ -829,7 +924,7 @@ export default function Home() {
 
         {/* Earth Background */}
         <ParallaxLayer
-          offset={2.5}
+          offset={3.5}
           speed={-0.1} // Slower speed for subtle movement
           className="flex items-end justify-center pointer-events-none opacity-30 z-10"
         >

@@ -657,7 +657,7 @@ export default function Home() {
               </div>
 
               {/* Animated Content Area */}
-              <div className="relative h-[230px]  lg:min-h-[500px] md:min-h-[400px]">
+              <div className="relative h-[230px]  lg:min-h-[400px] md:min-h-[350px]">
                 {experiences.map((exp, index) => (
                   <div
                     key={exp.id}

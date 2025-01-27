@@ -843,7 +843,7 @@ export default function Home() {
 
           {/* Content */}
           <div className="relative z-10">
-            <h2 className="text-[clamp(2rem,6vw,3rem)] font-bold mb-4 text-center">
+            <h2 className="text-[clamp(2rem,6vw,3rem)] font-bold mb-4 ">
               Contact Me
             </h2>
             <p className="text-[clamp(1rem,4vw,1.2rem)] mb-8 text-center">

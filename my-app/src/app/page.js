@@ -468,6 +468,7 @@ export default function Home() {
                   { name: "JavaScript", icon: "javascript" },
                   { name: "HTML", icon: "html" },
                   { name: "CSS", icon: "css" },
+                  { name: "Tailwind CSS", icon: "tailwind" },
                   { name: "Next.js", icon: "next" },
                   { name: "TypeScript", icon: "ts" },
                 ].map((skill, index) => (

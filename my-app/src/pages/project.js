@@ -1,10 +1,9 @@
 import Link from "next/link";
 import { FiGithub, FiExternalLink, FiArrowLeft } from "react-icons/fi";
-import { motion } from "framer-motion"; // Import motion from framer-motion
+import { motion } from "framer-motion";
 import "../app/globals.css";
 
 const Project = () => {
-  // Projects data defined within the component
   const projects = [
     {
       id: 1,
@@ -26,16 +25,45 @@ const Project = () => {
       repositoryUrl: "#",
       techStack: ["Next.js", "Framer Motion", "Tailwind CSS", "Nodemailer"],
     },
+    {
+      id: 3,
+      title: "E-commerce Store",
+      description:
+        "Full-stack e-commerce website with product management and payment integration",
+      image: "/images/ecommerce.png",
+      link: "#",
+      repositoryUrl: "#",
+      techStack: ["Next.js", "Stripe", "Tailwind CSS", "Prisma"],
+    },
+    {
+      id: 4,
+      title: "Portfolio Website",
+      description:
+        "Personal portfolio showcasing projects, skills, and experience",
+      image: "/images/portfolio.png",
+      link: "#",
+      repositoryUrl: "#",
+      techStack: ["React", "Framer Motion", "Tailwind CSS", "Vercel"],
+    },
+    {
+      id: 5,
+      title: "Task Management App",
+      description:
+        "Productivity app with real-time task management and collaboration",
+      image: "/images/taskmanager.png",
+      link: "#",
+      repositoryUrl: "#",
+      techStack: ["React", "Redux", "Tailwind CSS", "Firebase"],
+    },
   ];
 
   return (
     <div className="min-h-screen bg-[#F5F5DC]">
-      {/* Navigation Header */}
       <motion.nav
         className="bg-[#556B2F] text-[#F5F5DC] py-6 px-4 md:px-8 lg:px-16"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1 }} // Smooth fade-in transition
+        transition={{ duration: 1 }}
       >
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <Link
@@ -49,43 +77,36 @@ const Project = () => {
         </div>
       </motion.nav>
 
-      {/* Projects Grid */}
       <motion.main
         className="py-12 px-4 md:px-8 lg:px-16"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.2 }} // Fade-in after header
+        transition={{ duration: 1, delay: 0.2 }}
       >
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <div className="max-w-4xl mx-auto flex flex-col gap-8">
           {projects.map((project) => (
             <motion.article
               key={project.id}
-              className="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden"
-              initial={{ opacity: 0, y: 20 }} // Initial state off-screen
-              animate={{ opacity: 1, y: 0 }} // Fade and slide into position
-              transition={{ duration: 0.8 }} // Animation duration
+              className="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden flex items-center gap-6 p-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
             >
-              {/* Project Image */}
-              <div className="relative h-48 overflow-hidden group">
+              <div className="w-32 h-32 flex-shrink-0 overflow-hidden rounded-lg">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#556B2F]/90 via-[#556B2F]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
-
-              {/* Project Content */}
-              <div className="p-6">
-                <h2 className="text-xl font-bold text-[#556B2F] mb-3">
+              <div className="flex-1">
+                <h2 className="text-xl font-bold text-[#556B2F] mb-2">
                   {project.title}
                 </h2>
-                <p className="text-gray-600 text-sm mb-4">
+                <p className="text-gray-600 text-sm mb-3">
                   {project.description}
                 </p>
-
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2 mb-5">
+                <div className="flex flex-wrap gap-2 mb-4">
                   {project.techStack.map((tech, index) => (
                     <span
                       key={index}
@@ -95,8 +116,6 @@ const Project = () => {
                     </span>
                   ))}
                 </div>
-
-                {/* Action Buttons */}
                 <div className="flex gap-3">
                   <a
                     href={project.link}
@@ -119,12 +138,11 @@ const Project = () => {
         </div>
       </motion.main>
 
-      {/* Footer */}
       <motion.footer
         className="mt-16 py-8 border-t border-[#556B2F]/20"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.5 }} // Fade-in after main content
+        transition={{ duration: 1, delay: 0.5 }}
       >
         <div className="max-w-6xl mx-auto text-center text-[#556B2F]/80">
           <p>

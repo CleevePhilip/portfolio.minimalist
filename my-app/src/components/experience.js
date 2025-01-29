@@ -127,9 +127,7 @@ const ExperienceSection = () => {
                 }`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={
-                  activeIndex === index
-                    ? { opacity: 1, y: 0 }
-                    : { opacity: 0, y: 20 }
+                  activeIndex === index ? { opacity: 1 } : { opacity: 0 }
                 }
                 transition={{ duration: 0.5 }}
               >

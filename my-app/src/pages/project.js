@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FiGithub, FiExternalLink, FiArrowLeft } from "react-icons/fi";
+import { motion } from "framer-motion"; // Import motion from framer-motion
 import "../app/globals.css";
 
 const Project = () => {
@@ -30,7 +31,12 @@ const Project = () => {
   return (
     <div className="min-h-screen bg-[#F5F5DC]">
       {/* Navigation Header */}
-      <nav className="bg-[#556B2F] text-[#F5F5DC] py-6 px-4 md:px-8 lg:px-16">
+      <motion.nav
+        className="bg-[#556B2F] text-[#F5F5DC] py-6 px-4 md:px-8 lg:px-16"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }} // Smooth fade-in transition
+      >
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <Link
             href="/"
@@ -41,15 +47,23 @@ const Project = () => {
           </Link>
           <h1 className="text-2xl font-bold">Project Archive</h1>
         </div>
-      </nav>
+      </motion.nav>
 
       {/* Projects Grid */}
-      <main className="py-12 px-4 md:px-8 lg:px-16">
+      <motion.main
+        className="py-12 px-4 md:px-8 lg:px-16"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.2 }} // Fade-in after header
+      >
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
           {projects.map((project) => (
-            <article
+            <motion.article
               key={project.id}
               className="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden"
+              initial={{ opacity: 0, y: 20 }} // Initial state off-screen
+              animate={{ opacity: 1, y: 0 }} // Fade and slide into position
+              transition={{ duration: 0.8 }} // Animation duration
             >
               {/* Project Image */}
               <div className="relative h-48 overflow-hidden group">
@@ -100,20 +114,25 @@ const Project = () => {
                   </a>
                 </div>
               </div>
-            </article>
+            </motion.article>
           ))}
         </div>
-      </main>
+      </motion.main>
 
       {/* Footer */}
-      <footer className="mt-16 py-8 border-t border-[#556B2F]/20">
+      <motion.footer
+        className="mt-16 py-8 border-t border-[#556B2F]/20"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.5 }} // Fade-in after main content
+      >
         <div className="max-w-6xl mx-auto text-center text-[#556B2F]/80">
           <p>
             Want to see more? Contact me for additional projects and case
             studies
           </p>
         </div>
-      </footer>
+      </motion.footer>
     </div>
   );
 };

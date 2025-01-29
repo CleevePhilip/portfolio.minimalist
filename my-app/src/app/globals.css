@@ -18,18 +18,71 @@ body {
   color: var(--foreground);
   background: var(--background);
 }
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
+
 .highlight-text {
   @apply bg-[#FFFACD] text-[#556B2F] px-1 py-0.5 rounded;
   box-shadow: 0 2px 4px rgba(85, 107, 47, 0.1);
+}
+/* Hero Section Animations */
+.animate-entrance {
+  animation: professional-entrance 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+.delay-700 {
+  animation-delay: 700ms;
+}
+
+.delay-900 {
+  animation-delay: 900ms;
+}
+
+@keyframes professional-entrance {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll indicator animation */
+.animate-scroll-custom {
+  animation: scroll 2s infinite;
+}
+
+@keyframes scroll {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, 10px);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .animate-entrance,
+  .animate-scroll-custom {
+    animation: fade-in 0.6s ease-out forwards;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 }

@@ -169,110 +169,29 @@ export default function Home() {
           offset={0}
           speed={0.1}
           onClick={() => parallax.current.scrollTo(1)}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "#556B2F", // Forest green text
-            textAlign: "center",
-            zIndex: 1, // Ensure content is above the mountain
-          }}
+          className="flex flex-col items-center justify-center text-center text-forest-green z-10 explore-animation"
         >
-          <h1
-            style={{
-              fontSize: "4rem",
-              marginBottom: "1rem",
-              fontWeight: "bold",
-              textShadow: "2px 2px 4px rgba(0, 0, 0, 0.2)", // Add shadow for better visibility
-            }}
-          >
+          <h1 className="text-[4rem] mb-4 font-bold drop-shadow-md opacity-0 animate-entrance delay-300 ">
             Explore My Portfolio
           </h1>
-          <p style={{ fontSize: "1.5rem", opacity: 0.8 }}>
+          <p className="text-[1.5rem] opacity-0 animate-entrance delay-500">
             Scroll down to explore my work, skills, and experience
           </p>
           <img
-            src={url("leaf")} // Points to /images/leaf.svg
-            style={{
-              width: "10%",
-              marginTop: "2rem",
-              cursor: "pointer",
-              animation: "bounce 2s infinite", // Add bounce animation
-            }}
+            src={url("leaf")}
+            className="w-[10%] mt-10 cursor-pointer animate-bounce-custom  opacity-0 animate-entrance delay-700"
             alt="scroll down"
           />
 
           {/* Smooth Scroll Indicator */}
-          <div
-            style={{
-              position: "absolute",
-              bottom: "20px",
-              left: "50%",
-              transform: "translateX(-50%)",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <div
-              style={{
-                width: "20px",
-                height: "40px",
-                borderRadius: "10px",
-                border: "2px solid #556B2F",
-                position: "relative",
-              }}
-            >
-              <div
-                style={{
-                  width: "4px",
-                  height: "10px",
-                  borderRadius: "2px",
-                  backgroundColor: "#556B2F",
-                  position: "absolute",
-                  top: "5px",
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  animation: "scroll 2s infinite",
-                }}
-              />
+          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex flex-col items-center ">
+            <div className="w-5 h-10 rounded-lg border-2 border-forest-green relative">
+              <div className="w-1 h-2.5 rounded-sm bg-forest-green absolute top-1 left-1/2 -translate-x-1/2 animate-scroll-custom " />
             </div>
-            <p
-              style={{
-                marginTop: "10px",
-                fontSize: "0.9rem",
-                color: "#556B2F",
-              }}
-            >
+            <p className="mt-2.5 text-sm text-forest-green  opacity-0 animate-entrance delay-900">
               Scroll Down
             </p>
           </div>
-
-          {/* CSS for Bounce and Scroll Animations */}
-          <style>
-            {`
-              @keyframes bounce {
-                0%, 20%, 50%, 80%, 100% {
-                  transform: translateY(0);
-                }
-                40% {
-                  transform: translateY(-20px);
-                }
-                60% {
-                  transform: translateY(-10px);
-                }
-              }
-              @keyframes scroll {
-                0%, 100% {
-                  transform: translate(-50%, 0);
-                }
-                50% {
-                  transform: translate(-50%, 10px);
-                }
-              }
-            `}
-          </style>
         </ParallaxLayer>
 
         {/* Gradient Overlay */}

@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
-
+import Link from "next/link";
 // Helper function to construct the URL for assets
 const url = (name, wrap = false) =>
   `${wrap ? "url(" : ""}/images/${name}.svg${wrap ? ")" : ""}`;
@@ -812,7 +812,7 @@ export default function Home() {
             {/* View More Button */}
             <div className="flex justify-center mt-6 md:mt-8">
               <a
-                href="/projects"
+                href="/project"
                 className="px-6 py-2 md:px-8 md:py-3 bg-[#556B2F] text-white rounded-lg font-bold hover:bg-[#3D4D2B] transition-colors flex items-center gap-2"
               >
                 <span>View All Projects</span>

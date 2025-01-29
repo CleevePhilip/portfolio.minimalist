@@ -1,9 +1,42 @@
+"use client";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { FiGithub, FiExternalLink, FiArrowLeft } from "react-icons/fi";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import "../app/globals.css";
 
 const Project = () => {
+  const [isScrolling, setIsScrolling] = useState(false);
+  const controls = useAnimation();
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        // Scroll down - hide navbar
+        setIsScrolling(true);
+        controls.start({
+          height: 0,
+          opacity: 0,
+          transition: { duration: 0.5 },
+        });
+      } else {
+        // Scroll up - show navbar
+        setIsScrolling(false);
+        controls.start({
+          height: "70px",
+          opacity: 1,
+          transition: { duration: 0.6 },
+        });
+      }
+      lastScrollY = window.scrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [controls]);
+
   const projects = [
     {
       id: 1,
@@ -59,11 +92,11 @@ const Project = () => {
 
   return (
     <div className="min-h-screen bg-[#F5F5DC]">
+      {/* Navbar with Smooth Hide on Scroll */}
       <motion.nav
-        className="bg-[#556B2F] text-[#F5F5DC] py-6 px-4 md:px-8 lg:px-16"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
+        className="bg-[#556B2F] text-[#F5F5DC] fixed w-full top-0 left-0 py-6 px-4 md:px-8 lg:px-16 z-50 shadow-lg"
+        initial={{ height: "70px", opacity: 1 }} // Set fixed height initially
+        animate={controls}
       >
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <Link
@@ -73,12 +106,13 @@ const Project = () => {
             <FiArrowLeft className="text-xl" />
             <span className="font-medium">Back to Home</span>
           </Link>
-          <h1 className="text-2xl font-bold">Project Archive</h1>
+          <h1 className="text-lG font-bold">PROJECT ARCHIVE</h1>
         </div>
       </motion.nav>
 
+      {/* Main Content */}
       <motion.main
-        className="py-12 px-4 md:px-8 lg:px-16"
+        className="pt-24 pb-12 px-4 md:px-8 lg:px-16"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.2 }}
@@ -87,26 +121,26 @@ const Project = () => {
           {projects.map((project) => (
             <motion.article
               key={project.id}
-              className="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden flex items-center gap-6 p-6"
+              className="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col md:flex-row items-center gap-6 p-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="w-32 h-32 flex-shrink-0 overflow-hidden rounded-lg">
+              <div className="w-full md:w-32 md:h-32 flex-shrink-0 overflow-hidden rounded-lg">
                 <img
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="flex-1">
+              <div className="flex-1 text-center md:text-left">
                 <h2 className="text-xl font-bold text-[#556B2F] mb-2">
                   {project.title}
                 </h2>
                 <p className="text-gray-600 text-sm mb-3">
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-4">
                   {project.techStack.map((tech, index) => (
                     <span
                       key={index}
@@ -116,17 +150,17 @@ const Project = () => {
                     </span>
                   ))}
                 </div>
-                <div className="flex gap-3">
+                <div className="flex flex-col md:flex-row gap-3">
                   <a
                     href={project.link}
-                    className="flex items-center gap-2 px-4 py-2 bg-[#556B2F] text-white rounded-lg hover:bg-[#3D4D2B] transition-colors text-sm"
+                    className="flex items-center justify-center gap-2 px-4 py-2 bg-[#556B2F] text-white rounded-lg hover:bg-[#3D4D2B] transition-colors text-sm"
                   >
                     <FiExternalLink className="text-base" />
                     Live Demo
                   </a>
                   <a
                     href={project.repositoryUrl}
-                    className="flex items-center gap-2 px-4 py-2 border border-[#556B2F] text-[#556B2F] rounded-lg hover:bg-[#556B2F]/10 transition-colors text-sm"
+                    className="flex items-center justify-center gap-2 px-4 py-2 border border-[#556B2F] text-[#556B2F] rounded-lg hover:bg-[#556B2F]/10 transition-colors text-sm"
                   >
                     <FiGithub className="text-base" />
                     Source Code
@@ -138,6 +172,7 @@ const Project = () => {
         </div>
       </motion.main>
 
+      {/* Footer */}
       <motion.footer
         className="mt-16 py-8 border-t border-[#556B2F]/20"
         initial={{ opacity: 0 }}

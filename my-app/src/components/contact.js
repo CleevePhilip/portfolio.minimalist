@@ -56,21 +56,25 @@ const ContactSection = () => {
 
     try {
       // Send form data and captcha value to the backend
-      await axios.post(
-        `http://localhost:8000/${formData.email}/${formData.name}/${formData.message}`,
+      const response = await axios.post(
+        `https://portfolio-server-indol-rho.vercel.app/send_mail`, // Updated endpoint
         {
           email: formData.email,
           name: formData.name,
           message: formData.message,
-          captcha: captchaValue, // Include captcha response
+          captcha: captchaValue, // Include CAPTCHA value to validate on the backend
         }
       );
 
-      alert("Message sent successfully!");
+      if (response.data.success) {
+        alert("Message sent successfully!");
 
-      // Clear form fields after successful submission
-      setFormData({ name: "", email: "", message: "" });
-      setCaptchaValue(null); // Reset CAPTCHA
+        // Clear form fields after successful submission
+        setFormData({ name: "", email: "", message: "" });
+        setCaptchaValue(null); // Reset CAPTCHA
+      } else {
+        alert("Failed to send message. Please try again.");
+      }
     } catch (error) {
       console.error("Error sending message:", error);
       alert("Failed to send message. Please try again.");

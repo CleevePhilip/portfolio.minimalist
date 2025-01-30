@@ -41,13 +41,29 @@ const Project = () => {
       title: "Color Tap Game",
       description:
         "A fun color-matching game built with HTML and Tailwind CSS.",
-      image: "/images/colortap.png",
+      image: "/images/colorTap.png",
       link: "https://color-tap.vercel.app/",
       repositoryUrl: "#",
       techStack: ["HTML", "Tailwind CSS"],
     },
     {
       id: 2,
+      title: "ShopSphere Ecommerce Store",
+      description:
+        "A fun color-matching game built with HTML and Tailwind CSS.",
+      image: "/images/ShopSphereProj.png",
+      link: "https://color-tap.vercel.app/",
+      repositoryUrl: "#",
+      techStack: [
+        "React TS",
+        "Tailwind CSS",
+        "Express JS",
+        "Daisy UI",
+        "Mysql",
+      ],
+    },
+    {
+      id: 3,
       title: "Healthcare Platform",
       description:
         "Responsive medical service landing page with appointment booking system",
@@ -57,7 +73,7 @@ const Project = () => {
       techStack: ["React", "Tailwind CSS", "Formik", "React Icons"],
     },
     {
-      id: 3,
+      id: 4,
       title: "Consultancy Services",
       description:
         "Business consultancy website with service showcases and contact system",
@@ -67,7 +83,7 @@ const Project = () => {
       techStack: ["Next.js", "Framer Motion", "Tailwind CSS", "Nodemailer"],
     },
     {
-      id: 4,
+      id: 5,
       title: "Inventory Management System",
       description:
         "Full-stack e-commerce website with product management and payment integration",
@@ -75,17 +91,6 @@ const Project = () => {
       link: "#",
       repositoryUrl: "#",
       techStack: ["C#", ".NET GUI", "Microsoft SQL"],
-    },
-
-    {
-      id: 5,
-      title: "Color Tap Game",
-      description:
-        "A fun color-matching game built with HTML and Tailwind CSS.",
-      image: "/images/colortap.png",
-      link: "https://color-tap.vercel.app/",
-      repositoryUrl: "#",
-      techStack: ["HTML", "Tailwind CSS"],
     },
   ];
 

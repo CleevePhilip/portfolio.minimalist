@@ -111,6 +111,7 @@ const ContactSection = () => {
             <input
               type="text"
               name="name"
+              required
               value={formData.name}
               onChange={handleChange}
               placeholder="Your Name"
@@ -125,6 +126,7 @@ const ContactSection = () => {
             <input
               type="email"
               name="email"
+              required
               value={formData.email}
               onChange={handleChange}
               placeholder="Your Email"
@@ -138,6 +140,7 @@ const ContactSection = () => {
           <div className="relative">
             <textarea
               name="message"
+              required
               value={formData.message}
               onChange={handleChange}
               placeholder="Your Message"

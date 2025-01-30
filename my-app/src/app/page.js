@@ -50,7 +50,14 @@ export default function Home() {
         <FloatingParticles />
 
         {/* Section 1: Hero Section */}
-        <HeroSection />
+        <ParallaxLayer
+          offset={0}
+          speed={0.1}
+          onClick={() => parallax.current.scrollTo(1)}
+          className="flex flex-col items-center justify-center text-center text-forest-green z-10 explore-animation"
+        >
+          <HeroSection />
+        </ParallaxLayer>
 
         {/* Gradient Overlay */}
         <GradientOverlay />

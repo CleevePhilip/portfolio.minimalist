@@ -9,8 +9,9 @@ const projects = [
     description:
       "A responsive landing page for healthcare services built with React and Tailwind CSS, featuring mobile-first design and smooth animations.",
     image: "/images/healthcare.png",
-    link: "#",
+    link: "https://github.com/CleevePhilip/MedSched",
     techStack: ["React", "Tailwind CSS", "Responsive Design", "CSS Animations"],
+    features: [],
   },
   {
     id: 2,
@@ -18,12 +19,27 @@ const projects = [
     description:
       "Modern business consultancy website developed using React and Tailwind CSS, with adaptive layouts for all screen sizes and devices.",
     image: "/images/consultancy.png",
-    link: "#",
+    link: "https://github.com/CleevePhilip/AgencyLandingpage",
     techStack: [
       "React",
       "Tailwind CSS",
       "Mobile-First Approach",
       "Flexbox/Grid",
+    ],
+    features: [],
+  },
+  {
+    id: 3,
+    title: "Inventory Management System",
+    description:
+      "A robust system for efficient stock tracking and sales processing, built with C# and Microsoft SQL, featuring a user-friendly .NET Framework GUI.",
+    image: "/images/inventory_management_system.jpg",
+    link: "https://github.com/CleevePhilip/improject",
+    techStack: ["C#", "Microsoft SQL", "GUI .Net Framework"],
+    features: [
+      "POS Integration",
+      "Automated Stock Alerts",
+      "Barcode Scanning Support",
     ],
   },
 ];
@@ -37,8 +53,8 @@ const ProjectSection = () => {
       speed={0.5}
       className="flex items-center justify-center bg-[#F5F5DC] text-[#556B2F] p-6 md:p-8 lg:p-10"
     >
-      <div className="w-full max-w-[1200px]">
-        <h2 className="text-[clamp(1.5rem,6vw,2.5rem)] font-bold mb-8 text-center">
+      <div className="w-full max-w-[1200px] text-center">
+        <h2 className="text-[clamp(1.5rem,6vw,2.5rem)] font-bold mb-8">
           Projects
         </h2>
 
@@ -65,10 +81,14 @@ const ProjectSection = () => {
                 <p className="text-sm md:text-base mb-4">
                   {projects[activeIndex].description}
                 </p>
-                <p className="text-sm md:text-base mb-4">
-                  <strong>Tech Stack:</strong>{" "}
-                  {projects[activeIndex].techStack.join(", ")}
+                <p className="text-sm md:text-base mb-4 font-semibold">
+                  Tech Stack: {projects[activeIndex].techStack.join(", ")}
                 </p>
+                <ul className="text-sm md:text-base mb-4 list-disc list-inside">
+                  {projects[activeIndex].features.map((feature, index) => (
+                    <li key={index}>{feature}</li>
+                  ))}
+                </ul>
                 <a
                   href={projects[activeIndex].link}
                   target="_blank"
@@ -85,14 +105,20 @@ const ProjectSection = () => {
         {/* Navigation Arrows */}
         <div className="flex justify-between items-center mt-6">
           <button
-            onClick={() => setActiveIndex((prev) => Math.max(prev - 1, 0))}
+            onClick={() =>
+              setActiveIndex((prev) =>
+                prev > 0 ? prev - 1 : projects.length - 1
+              )
+            }
             className="bg-white/30 text-[#556B2F] p-3 rounded-full hover:bg-white/50 transition-all"
           >
             ◀
           </button>
           <button
             onClick={() =>
-              setActiveIndex((prev) => Math.min(prev + 1, projects.length - 1))
+              setActiveIndex((prev) =>
+                prev < projects.length - 1 ? prev + 1 : 0
+              )
             }
             className="bg-white/30 text-[#556B2F] p-3 rounded-full hover:bg-white/50 transition-all"
           >

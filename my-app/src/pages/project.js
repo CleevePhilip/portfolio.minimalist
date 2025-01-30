@@ -14,7 +14,6 @@ const Project = () => {
 
     const handleScroll = () => {
       if (window.scrollY > lastScrollY) {
-        // Scroll down - hide navbar
         setIsScrolling(true);
         controls.start({
           height: 0,
@@ -22,7 +21,6 @@ const Project = () => {
           transition: { duration: 0.5 },
         });
       } else {
-        // Scroll up - show navbar
         setIsScrolling(false);
         controls.start({
           height: "70px",
@@ -40,6 +38,16 @@ const Project = () => {
   const projects = [
     {
       id: 1,
+      title: "Color Tap Game",
+      description:
+        "A fun color-matching game built with HTML and Tailwind CSS.",
+      image: "/images/colortap.png",
+      link: "https://color-tap.vercel.app/",
+      repositoryUrl: "#",
+      techStack: ["HTML", "Tailwind CSS"],
+    },
+    {
+      id: 2,
       title: "Healthcare Platform",
       description:
         "Responsive medical service landing page with appointment booking system",
@@ -49,7 +57,7 @@ const Project = () => {
       techStack: ["React", "Tailwind CSS", "Formik", "React Icons"],
     },
     {
-      id: 2,
+      id: 3,
       title: "Consultancy Services",
       description:
         "Business consultancy website with service showcases and contact system",
@@ -59,46 +67,37 @@ const Project = () => {
       techStack: ["Next.js", "Framer Motion", "Tailwind CSS", "Nodemailer"],
     },
     {
-      id: 3,
-      title: "E-commerce Store",
+      id: 4,
+      title: "Inventory Management System",
       description:
         "Full-stack e-commerce website with product management and payment integration",
-      image: "/images/ecommerce.png",
+      image: "/images/inventory_management_system.jpg",
       link: "#",
       repositoryUrl: "#",
-      techStack: ["Next.js", "Stripe", "Tailwind CSS", "Prisma"],
+      techStack: ["C#", ".NET GUI", "Microsoft SQL"],
     },
-    {
-      id: 4,
-      title: "Portfolio Website",
-      description:
-        "Personal portfolio showcasing projects, skills, and experience",
-      image: "/images/portfolio.png",
-      link: "#",
-      repositoryUrl: "#",
-      techStack: ["React", "Framer Motion", "Tailwind CSS", "Vercel"],
-    },
+
     {
       id: 5,
-      title: "Task Management App",
+      title: "Color Tap Game",
       description:
-        "Productivity app with real-time task management and collaboration",
-      image: "/images/taskmanager.png",
-      link: "#",
+        "A fun color-matching game built with HTML and Tailwind CSS.",
+      image: "/images/colortap.png",
+      link: "https://color-tap.vercel.app/",
       repositoryUrl: "#",
-      techStack: ["React", "Redux", "Tailwind CSS", "Firebase"],
+      techStack: ["HTML", "Tailwind CSS"],
     },
   ];
 
   return (
     <div className="min-h-screen bg-[#F5F5DC]">
-      {/* Navbar with Smooth Hide on Scroll */}
+      {/* Navbar */}
       <motion.nav
-        className="bg-[#556B2F] text-[#F5F5DC] fixed w-full top-0 left-0 py-6 px-4 md:px-8 lg:px-16 z-50 shadow-lg"
-        initial={{ height: "70px", opacity: 1 }} // Set fixed height initially
+        className="bg-[#556B2F] text-[#F5F5DC] fixed w-full top-0 left-0 h-[70px] flex items-center z-50 shadow-lg"
+        initial={{ height: "70px", opacity: 1 }}
         animate={controls}
       >
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
+        <div className="max-w-6xl w-full mx-auto flex items-center justify-between px-4">
           <Link
             href="/"
             className="flex items-center gap-2 hover:opacity-80 transition-opacity"
@@ -106,7 +105,7 @@ const Project = () => {
             <FiArrowLeft className="text-xl" />
             <span className="font-medium">Back to Home</span>
           </Link>
-          <h1 className="text-lG font-bold">PROJECT ARCHIVE</h1>
+          <h1 className="text-lg font-bold">PROJECT ARCHIVE</h1>
         </div>
       </motion.nav>
 
@@ -155,15 +154,13 @@ const Project = () => {
                     href={project.link}
                     className="flex items-center justify-center gap-2 px-4 py-2 bg-[#556B2F] text-white rounded-lg hover:bg-[#3D4D2B] transition-colors text-sm"
                   >
-                    <FiExternalLink className="text-base" />
-                    Live Demo
+                    <FiExternalLink className="text-base" /> Live Demo
                   </a>
                   <a
                     href={project.repositoryUrl}
                     className="flex items-center justify-center gap-2 px-4 py-2 border border-[#556B2F] text-[#556B2F] rounded-lg hover:bg-[#556B2F]/10 transition-colors text-sm"
                   >
-                    <FiGithub className="text-base" />
-                    Source Code
+                    <FiGithub className="text-base" /> Source Code
                   </a>
                 </div>
               </div>

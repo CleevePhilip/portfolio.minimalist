@@ -57,7 +57,7 @@ const ContactSection = () => {
     try {
       // Send form data and captcha value to the backend
       await axios.post(
-        `https://portfolio-server-psi-gray.vercel.app/send_mail/${formData.email}/${formData.name}/${formData.message}`,
+        `https://portfoliocleeve.vercel.app/${formData.email}/${formData.name}/${formData.message}`,
         {
           email: formData.email,
           name: formData.name,

@@ -94,7 +94,7 @@ const ProjectSection = () => {
             <div
               key={project.id}
               data-id={project.id}
-              className={`project-card h-[300px] z-10 p-5 w-[300px] bg-white flex flex-col shadow-md rounded-md transform transition-all duration-500 opacity-0 ${
+              className={`project-card h-[300px] z-10 p-5 w-[300px] bg-white cursor-pointer flex flex-col shadow-md rounded-md  hover:translate-y-[-10px] transform transition-all duration-500 opacity-0 ${
                 visibleCards.has(String(project.id))
                   ? `translate-y-0 opacity-100 delay-${index * 200}`
                   : "translate-y-10 opacity-0"

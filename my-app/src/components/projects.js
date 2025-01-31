@@ -85,16 +85,16 @@ const ProjectSection = () => {
       className="flex flex-col items-center justify-center bg-gradient-to-r bg-[#8FBC8F] p-8 md:p-12 lg:p-16 relative"
     >
       <div className="w-full max-w-[1200px] text-center text-white relative z-10">
-        <h2 className="text-[clamp(2rem,6vw,3rem)] font-bold mb-12 text-shadow-md">
+        <h2 className="text-[clamp(2rem,6vw,3rem)] text-black sm:text-3xl p-3 text-left lg:text-center lg:text-white md:text-white font-bold lg:mb-12 text-shadow-md">
           Featured Projects
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-3  lg:gap-3">
           {projects.map((project, index) => (
             <div
               key={project.id}
               data-id={project.id}
-              className={`project-card h-[300px] z-10 p-5 w-[300px] bg-white cursor-pointer flex flex-col shadow-md rounded-md  hover:translate-y-[-10px] transform transition-all duration-500 opacity-0 ${
+              className={`project-card lg:h-[300px] z-10 p-5 lg:w-[300px]  w-[300px] h-[280px] m bg-white cursor-pointer flex flex-col shadow-md rounded-md  hover:translate-y-[-10px] transform transition-all duration-500 opacity-0 ${
                 visibleCards.has(String(project.id))
                   ? `translate-y-0 opacity-100 delay-${index * 200}`
                   : "translate-y-10 opacity-0"
@@ -144,7 +144,7 @@ const ProjectSection = () => {
           ))}
         </div>
 
-        <div className="flex justify-center mt-12">
+        <div className="flex justify-center mt-5 lg:mt-12">
           <a
             href="/project"
             className="px-8 py-3 bg-[#556B2F] text-white rounded-lg font-bold hover:bg-[#3D4D2B] transition-all flex justify-between items-center gap-3"

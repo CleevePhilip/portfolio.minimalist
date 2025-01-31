@@ -32,13 +32,15 @@ const AboutSection = () => {
         animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
         transition={{ duration: 1.5, ease: "easeInOut" }} // Increased duration for smoother transition
       >
-        <h2 className="text-5xl mb-6 font-bold">About Me</h2>
-        <div className="space-y-6 text-xl leading-relaxed">
+        <h2 className="text-3xl lg:text-5xl my-3 lg:mb-6 font-bold text-white lg:text-white md:text-white">
+          About Me
+        </h2>
+        <div className="space-y-6 lg:text-xl leading-relaxed  text-sm md:text-xl">
           <p>
             Hi, I'm{" "}
             <span className="text-[#FFD700] font-semibold">Cleeve Wong</span>, a
             passionate
-            <span className="font-semibold">
+            <span className="font-semibold ">
               {" "}
               full-stack developer
             </span> with{" "}
@@ -65,7 +67,7 @@ const AboutSection = () => {
           <h3 className="text-2xl font-semibold mb-6 text-[#FFD700]">
             🎓 Academic Background
           </h3>
-          <p className="text-xl leading-relaxed">
+          <p className="text-sm lg:text-xl leading-relaxed">
             I'm currently pursuing a{" "}
             <span className="text-[#FFD700] font-semibold">
               Bachelor of Science in Information Technology (BSIT)
@@ -76,7 +78,7 @@ const AboutSection = () => {
         </div>
 
         {/* Tech Stack Section */}
-        <div className="mt-12">
+        <div className="lg:mt-12 md:mt-10">
           <h3 className="text-2xl font-semibold mb-6 text-[#FFD700] flex items-center gap-3">
             <motion.span
               animate={{ y: [0, 5, 0] }}

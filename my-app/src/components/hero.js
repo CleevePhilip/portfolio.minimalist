@@ -31,7 +31,7 @@ const HeroSection = () => {
         initial={{ opacity: 0, y: -50, scale: 0.8 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="text-[5rem] font-extrabold text-green-400 drop-shadow-glow tracking-wider animate-neon-pulse"
+        className="text-5xl lg:text-[5rem] font-extrabold text-green-400 drop-shadow-glow tracking-wider animate-neon-pulse"
       >
         Welcome to the Future
       </motion.h1>

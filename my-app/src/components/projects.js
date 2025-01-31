@@ -1,137 +1,155 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { ParallaxLayer } from "@react-spring/parallax";
-import { motion, AnimatePresence } from "framer-motion";
+import { FaRegFolder } from "react-icons/fa";
+import { FiGithub, FiExternalLink } from "react-icons/fi";
+import { GoProjectSymlink } from "react-icons/go";
 
 const projects = [
   {
     id: 1,
-    title: "Healthcare Platform Landing Page",
-    description:
-      "A responsive landing page for healthcare services built with React and Tailwind CSS, featuring mobile-first design and smooth animations.",
-    image: "/images/healthcare.png",
-    link: "https://github.com/CleevePhilip/MedSched",
-    techStack: ["React", "Tailwind CSS", "Responsive Design", "CSS Animations"],
-    features: [],
+    title: "Color Tap",
+    description: "A fun color-matching game built with HTML and Tailwind CSS.",
+    techStack: ["HTML", "CSS", "Tailwind CSS"],
+    githubLink: "#",
+    liveLink: "#",
   },
   {
     id: 2,
+    title: "Healthcare Platform Landing Page",
+    description:
+      "A responsive landing page for healthcare services built with React and Tailwind CSS.",
+    techStack: ["React", "Tailwind CSS", "Responsive Design", "CSS Animations"],
+    githubLink: "https://github.com/CleevePhilip/MedSched",
+    liveLink: "#",
+  },
+  {
+    id: 3,
     title: "Consultancy Services Landing Page",
     description:
-      "Modern business consultancy website developed using React and Tailwind CSS, with adaptive layouts for all screen sizes and devices.",
-    image: "/images/consultancy.png",
-    link: "https://github.com/CleevePhilip/AgencyLandingpage",
+      "A modern business consultancy website developed using React and Tailwind CSS.",
     techStack: [
       "React",
       "Tailwind CSS",
       "Mobile-First Approach",
       "Flexbox/Grid",
     ],
-    features: [],
+    githubLink: "https://github.com/CleevePhilip/AgencyLandingpage",
+    liveLink: "#",
   },
   {
-    id: 3,
+    id: 4,
     title: "Inventory Management System",
     description:
-      "A robust system for efficient stock tracking and sales processing, built with C# and Microsoft SQL, featuring a user-friendly .NET Framework GUI.",
-    image: "/images/inventory_management_system.jpg",
-    link: "https://github.com/CleevePhilip/improject",
+      "A robust system for efficient stock tracking and sales processing, built with C# and Microsoft SQL.",
     techStack: ["C#", "Microsoft SQL", "GUI .Net Framework"],
-    features: [
-      "POS Integration",
-      "Automated Stock Alerts",
-      "Barcode Scanning Support",
-    ],
+    githubLink: "https://github.com/CleevePhilip/improject",
+    liveLink: "#",
   },
 ];
 
 const ProjectSection = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [visibleCards, setVisibleCards] = useState(new Set());
+
+  const observer = useRef(
+    new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const cardId = entry.target.getAttribute("data-id");
+          if (entry.isIntersecting) {
+            setVisibleCards((prev) => new Set(prev).add(cardId)); // Add the card to the visible set
+          } else {
+            setVisibleCards((prev) => {
+              const newSet = new Set(prev);
+              newSet.delete(cardId); // Remove the card when it goes out of view
+              return newSet;
+            });
+          }
+        });
+      },
+      { threshold: 0.2 }
+    ) // Trigger when 20% of the card is visible
+  );
+
+  useEffect(() => {
+    const elements = document.querySelectorAll(".project-card");
+    elements.forEach((el) => observer.current.observe(el));
+    return () => {
+      elements.forEach((el) => observer.current.unobserve(el));
+    };
+  }, []);
 
   return (
     <ParallaxLayer
       offset={4}
       speed={0.5}
-      className="flex items-center justify-center bg-[#F5F5DC] text-[#556B2F] p-6 md:p-8 lg:p-10"
+      className="flex flex-col items-center justify-center bg-gradient-to-r bg-[#8FBC8F] p-8 md:p-12 lg:p-16 relative"
     >
-      <div className="w-full max-w-[1200px] text-center">
-        <h2 className="text-[clamp(1.5rem,6vw,2.5rem)] font-bold mb-8">
-          Projects
+      <div className="w-full max-w-[1200px] text-center text-white relative z-10">
+        <h2 className="text-[clamp(2rem,6vw,3rem)] font-bold mb-12 text-shadow-md">
+          Featured Projects
         </h2>
 
-        {/* Project Slider */}
-        <div className="relative w-full h-[500px] md:h-[600px] overflow-hidden rounded-lg shadow-lg">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={projects[activeIndex].id}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="absolute w-full h-full"
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {projects.map((project, index) => (
+            <div
+              key={project.id}
+              data-id={project.id}
+              className={`project-card h-[300px] z-10 p-5 w-[300px] bg-white flex flex-col shadow-md rounded-md transform transition-all duration-500 opacity-0 ${
+                visibleCards.has(String(project.id))
+                  ? `translate-y-0 opacity-100 delay-${index * 200}`
+                  : "translate-y-10 opacity-0"
+              }`}
             >
-              <img
-                src={projects[activeIndex].image}
-                alt={projects[activeIndex].title}
-                className="w-full h-full object-contain rounded-lg"
-              />
-              <div className="absolute inset-0 bg-[#8FBC8F] text-white p-6 flex flex-col items-center justify-center text-center opacity-0 hover:opacity-100 transition-opacity duration-500">
-                <h3 className="text-2xl font-bold mb-3">
-                  {projects[activeIndex].title}
-                </h3>
-                <p className="text-sm md:text-base mb-4">
-                  {projects[activeIndex].description}
-                </p>
-                <p className="text-sm md:text-base mb-4 font-semibold">
-                  Tech Stack: {projects[activeIndex].techStack.join(", ")}
-                </p>
-                <ul className="text-sm md:text-base mb-4 list-disc list-inside">
-                  {projects[activeIndex].features.map((feature, index) => (
-                    <li key={index}>{feature}</li>
-                  ))}
-                </ul>
-                <a
-                  href={projects[activeIndex].link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-6 py-2 bg-white text-[#556B2F] rounded-lg font-bold hover:bg-[#F5F5DC] transition-colors"
-                >
-                  View Code
-                </a>
+              <div className="flex justify-between items-center">
+                <FaRegFolder className="text-5xl text-[#556B2F]" />
+                <div className="flex justify-center items-center space-x-3">
+                  <div className="relative group">
+                    <a
+                      href={project.githubLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center"
+                    >
+                      <FiGithub className="text-2xl text-[#556B2F]" />
+                    </a>
+                  </div>
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FiExternalLink className="text-2xl text-[#556B2F]" />
+                  </a>
+                </div>
               </div>
-            </motion.div>
-          </AnimatePresence>
+              <div className="h-[10rem] flex flex-col justify-center items-start space-y-3">
+                <p className="text-lg uppercase text-left text-[#556B2F]">
+                  {project.title}
+                </p>
+                <p className="text-sm text-[#556B2F] text-left leading-relaxed">
+                  {project.description}
+                </p>
+              </div>
+              <div className="flex flex-wrap justify-center md:justify-start gap-2">
+                {project.techStack.map((tech, index) => (
+                  <span
+                    key={index}
+                    className="px-3 py-1 bg-[#556B2F]/10 text-[#556B2F] rounded-full text-xs font-medium"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
 
-        {/* Navigation Arrows */}
-        <div className="flex justify-between items-center mt-6">
-          <button
-            onClick={() =>
-              setActiveIndex((prev) =>
-                prev > 0 ? prev - 1 : projects.length - 1
-              )
-            }
-            className="bg-white/30 text-[#556B2F] p-3 rounded-full hover:bg-white/50 transition-all"
-          >
-            ◀
-          </button>
-          <button
-            onClick={() =>
-              setActiveIndex((prev) =>
-                prev < projects.length - 1 ? prev + 1 : 0
-              )
-            }
-            className="bg-white/30 text-[#556B2F] p-3 rounded-full hover:bg-white/50 transition-all"
-          >
-            ▶
-          </button>
-        </div>
-
-        {/* View More Button */}
-        <div className="flex justify-center mt-8">
+        <div className="flex justify-center mt-12">
           <a
             href="/project"
-            className="px-8 py-3 bg-[#556B2F] text-white rounded-lg font-bold hover:bg-[#3D4D2B] transition-all"
+            className="px-8 py-3 bg-[#556B2F] text-white rounded-lg font-bold hover:bg-[#3D4D2B] transition-all flex justify-between items-center gap-3"
           >
+            <GoProjectSymlink className="text-xl" />
             View All Projects
           </a>
         </div>

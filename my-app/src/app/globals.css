@@ -3,27 +3,37 @@
 @tailwind utilities;
 
 :root {
-  --background: #ece7e1;
-  --foreground: #171717;
+  --background: white; /* Soft Cream */
+  --foreground: #2c2c2c; /* Deep Charcoal */
+  --primary: #8fbc8f; /* Sage Green */
+  --accent: #d4a373; /* Warm Earthy Brown */
+  --highlight: #fffacd; /* Light Yellow */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #ece7e1;
-    --foreground: #171717;
+    --background: white; /* Deep Black */
+    --foreground: #e3e3e3; /* Soft Off-White */
+    --primary: #6b8e68; /* Muted Sage */
+    --accent: #b08968; /* Warm Muted Brown */
+    --highlight: #f3e5ab; /* Softer Light Yellow */
   }
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", sans-serif;
+  scroll-behavior: smooth;
 }
 
 .highlight-text {
-  @apply bg-[#FFFACD] text-[#556B2F] px-1 py-0.5 rounded;
+  @apply px-1 py-0.5 rounded;
+  background: var(--highlight);
+  color: var(--primary);
   box-shadow: 0 2px 4px rgba(85, 107, 47, 0.1);
 }
+
 /* Hero Section Animations */
 .animate-entrance {
   animation: professional-entrance 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;

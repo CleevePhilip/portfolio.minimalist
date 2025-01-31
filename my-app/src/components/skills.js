@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { ParallaxLayer } from "@react-spring/parallax";
-import { motion } from "framer-motion"; // Import motion from framer-motion
+import { motion } from "framer-motion";
 
 const url = (name, wrap = false) =>
   `${wrap ? "url(" : ""}/images/${name}.svg${wrap ? ")" : ""}`;
@@ -32,23 +32,31 @@ const SkillSection = () => {
     };
   }, []);
 
-  // Parent animation settings for the whole section
+  // Parent animation settings for the whole section with smooth fade-up
   const sectionAnimation = {
     initial: { opacity: 0, y: 50 },
     animate: {
       opacity: isVisible ? 1 : 0,
       y: isVisible ? 0 : 50,
-      transition: { duration: 1, ease: "easeOut" },
+      transition: {
+        duration: 1.5,
+        ease: "easeInOut", // Make it smoother with easeInOut
+      },
     },
   };
 
-  // Child animation settings for skills
+  // Child animation settings for skills with smooth fade-up
   const skillAnimation = {
-    initial: { opacity: 0, scale: 0.9 },
+    initial: { opacity: 0, scale: 0.9, y: 50 }, // Adding initial y for the fade-up effect
     animate: {
       opacity: 1,
       scale: 1,
-      transition: { type: "spring", stiffness: 300, damping: 25 },
+      y: 0, // Smoothly transition from a lower position to the final position
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 25,
+      },
     },
   };
 
@@ -60,7 +68,7 @@ const SkillSection = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#F5F5DC", // Beige background
+        backgroundColor: "white", // Beige background
         color: "#556B2F", // Forest green text
         padding: "0 10%",
         zIndex: 0, // Ensure content is above the mountain
@@ -84,6 +92,7 @@ const SkillSection = () => {
         >
           Skills
         </h2>
+
         {/* Frontend Skills */}
         <div style={{ marginBottom: "2rem" }}>
           <h3

@@ -85,7 +85,7 @@ const ProjectSection = () => {
       className="flex flex-col items-center justify-center bg-gradient-to-r bg-[#8FBC8F] p-8 md:p-12 lg:p-16 relative"
     >
       <div className="w-full max-w-[1200px] text-center text-white relative z-10">
-        <h2 className="text-[clamp(2rem,6vw,3rem)] text-black sm:text-3xl p-3 text-left lg:text-center lg:text-white md:text-white font-bold lg:mb-12 text-shadow-md">
+        <h2 className="text-[clamp(2rem,6vw,3rem)] text-black  sm:text-3xl p-3 text-left lg:text-center lg:text-white md:text-white font-bold lg:mb-12 text-shadow-md">
           Featured Projects
         </h2>
 

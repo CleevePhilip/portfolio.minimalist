@@ -8,6 +8,7 @@
   --primary: #8fbc8f; /* Sage Green */
   --accent: #d4a373; /* Warm Earthy Brown */
   --highlight: #fffacd; /* Light Yellow */
+  font-family: var(--font-montserrat), sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {

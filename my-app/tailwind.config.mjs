@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import { fontFamily } from "tailwindcss/defaultTheme";
+
 export default {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -10,14 +12,17 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        "forest-green": "#556B2F",
+        forestGreen: "#556B2F",
+      },
+      fontFamily: {
+        montserrat: ["Montserrat", ...fontFamily.sans],
       },
       animation: {
-        "bounce-custom": "smooth-bounce 3s ease-in-out infinite",
-        "scroll-custom": "scroll 2s infinite",
+        bounceCustom: "smooth-bounce 3s ease-in-out infinite",
+        scrollCustom: "scroll 2s infinite",
       },
       keyframes: {
-        "smooth-bounce": {
+        smoothBounce: {
           "0%, 100%": {
             transform: "translateY(0)",
             animationTimingFunction: "cubic-bezier(0.4, 0, 0.6, 1)",
